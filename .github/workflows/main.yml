@@ -3,6 +3,9 @@ name: Run FairValue Screening
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   run-screening:
     runs-on: ubuntu-latest
@@ -24,6 +27,27 @@ jobs:
       - name: Run valuation and screening
         run: |
           python main.py --batch-file tickers.txt --output batch_output
+
+      - name: Prepare published reports
+        run: |
+          mkdir -p published
+          cp batch_output/market_report.csv published/market_report.csv
+          cp batch_output/telegram_report.json published/telegram_report.json
+          cp batch_output/telegram_report.txt published/telegram_report.txt
+
+      - name: Publish reports to repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add published/
+
+          if git diff --cached --quiet; then
+            echo "No report changes"
+          else
+            git commit -m "Update FairValue screening report"
+            git push
+          fi
 
       - name: Upload report artifacts
         uses: actions/upload-artifact@v4
