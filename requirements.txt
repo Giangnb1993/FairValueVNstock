@@ -1,0 +1,3 @@
+vnstock>=4.0.6
+pandas>=2.0
+numpy>=1.24

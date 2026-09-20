@@ -1,0 +1,12 @@
+{
+  "version": "V8.4",
+  "minimum_independent_methods": 2,
+  "method_agreement_max_ratio": 2.25,
+  "medium_confidence_max_ratio": 1.5,
+  "full_weights_are_never_generic_reweighted": true,
+  "historical_target_recovery": {
+    "pe": "4+ standard; 3 medium; 2 low only if raw/provider has >=4 rows",
+    "ev_ebitda": "4+ standard; 2 low only if raw/provider has >=4 rows",
+    "current_market_multiple_as_fair_target": false
+  }
+}

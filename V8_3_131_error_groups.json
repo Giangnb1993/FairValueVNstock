@@ -1,0 +1,12 @@
+{
+  "E202_DEBT_INCONSISTENT": [
+    "NTC",
+    "HND"
+  ],
+  "E103_ANNUAL_ORIENTATION_UNVERIFIED": [
+    "HVN"
+  ],
+  "E501_DATA_QUALITY_FAIL": [
+    "HVN"
+  ]
+}

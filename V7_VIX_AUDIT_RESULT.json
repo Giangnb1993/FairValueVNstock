@@ -1,0 +1,17 @@
+{
+  "ticker": "VIX",
+  "basis": "LATEST_QUARTER_BALANCE_WITH_ANNUAL_FLOWS",
+  "latest_period": "2026-Q2",
+  "roe_current": 0.2408,
+  "eps_current": 2870.56,
+  "bvps_current": 13169.43,
+  "pe_current": 4.476478457165152,
+  "pb_current": 0.9757445842378903,
+  "sustainable_roe": 0.1158,
+  "normalized_eps": 1525.94,
+  "pe_target": 10.670000000000002,
+  "pb_base": 13399.895025000002,
+  "pe_base": 16281.779800000004,
+  "ri_base": 9495.26969747899,
+  "fair_value": 13483.5353919958
+}

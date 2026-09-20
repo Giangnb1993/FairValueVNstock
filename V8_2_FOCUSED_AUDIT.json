@@ -1,0 +1,43 @@
+{
+  "build": "V8.2 SYSTEMIC-FIX",
+  "verification": "FOCUSED_REGRESSION_PASS",
+  "tested_tickers": [
+    "VCB",
+    "SSI",
+    "BVH",
+    "VHM",
+    "HPG",
+    "POW",
+    "FPT",
+    "MWG",
+    "CTD",
+    "ACV",
+    "VIC",
+    "BMP",
+    "PTI",
+    "TDM",
+    "POT",
+    "HPT",
+    "VTE",
+    "IDP",
+    "HMH",
+    "BCG",
+    "PAN",
+    "HVN",
+    "BVS",
+    "LAS",
+    "HDB"
+  ],
+  "checks": {
+    "12_family_classification_samples": "PASS",
+    "market_price_unit_cases": "PASS",
+    "empty_csv_loader_BVS": "PASS",
+    "NOT_RUN_not_PASS_LAS": "PASS",
+    "PAN_cross_method_gate": "PASS",
+    "HVN_no_crash_structured_review": "PASS",
+    "HDB_remap_secondary_anchor": "PASS",
+    "golden_regression_VCB_BVH_VHM_HPG_MWG_CTD": "PASS",
+    "POW_structured_partial": "PASS"
+  },
+  "note": "Full 201 offline rerun was attempted but exceeded the execution time budget; focused tests cover each systemic fix and all locked golden regressions."
+}

@@ -1,0 +1,392 @@
+{
+  "build": "V8.5 SYSTEMIC EVIDENCE FIX",
+  "baseline": "user latest 133-ticker batch_output(2).zip",
+  "total": 133,
+  "crash_count": 0,
+  "validation_status_counts": {
+    "PASS": 53,
+    "AUTO_FIXED": 75,
+    "PARTIAL": 5
+  },
+  "valuation_status_counts": {
+    "OK_FULL": 83,
+    "OK_PROXY_NO_RNAV": 14,
+    "OK_FALLBACK": 26,
+    "PARTIAL": 5,
+    "OK_PROXY_NO_SOTP": 5
+  },
+  "fair_value_type_counts": {
+    "FULL_FAIR_VALUE": 102,
+    "FALLBACK_FAIR_VALUE": 26
+  },
+  "confidence_counts": {
+    "HIGH": 46,
+    "MEDIUM": 56,
+    "LOW": 26
+  },
+  "usable_fair_value_count": 128,
+  "usable_fair_value_pct": 0.9624060150375939,
+  "remaining_partial": [
+    {
+      "ticker": "POW",
+      "sector": "UTILITIES",
+      "missing_methods": "dcf_fcff"
+    },
+    {
+      "ticker": "VNZ",
+      "sector": "TECHNOLOGY_ASSET_LIGHT",
+      "missing_methods": "pe"
+    },
+    {
+      "ticker": "VIC",
+      "sector": "HOLDING_CONGLOMERATE",
+      "missing_methods": "dcf_fcff"
+    },
+    {
+      "ticker": "HUT",
+      "sector": "HOLDING_CONGLOMERATE",
+      "missing_methods": "dcf_fcff"
+    },
+    {
+      "ticker": "GEL",
+      "sector": "HOLDING_CONGLOMERATE",
+      "missing_methods": "pb;pe;dcf_fcff"
+    }
+  ],
+  "newly_rescued_from_previous_batch": [
+    {
+      "ticker": "NT2",
+      "sector": "UTILITIES",
+      "valuation_status": "OK_FULL",
+      "fair_value_type": "FULL_FAIR_VALUE",
+      "confidence": "MEDIUM",
+      "fair_value": 43782.90778418003
+    },
+    {
+      "ticker": "VSH",
+      "sector": "UTILITIES",
+      "valuation_status": "OK_FULL",
+      "fair_value_type": "FULL_FAIR_VALUE",
+      "confidence": "MEDIUM",
+      "fair_value": 85040.43683334789
+    },
+    {
+      "ticker": "CHP",
+      "sector": "UTILITIES",
+      "valuation_status": "OK_FULL",
+      "fair_value_type": "FULL_FAIR_VALUE",
+      "confidence": "MEDIUM",
+      "fair_value": 55773.79365403436
+    },
+    {
+      "ticker": "SHP",
+      "sector": "UTILITIES",
+      "valuation_status": "OK_FULL",
+      "fair_value_type": "FULL_FAIR_VALUE",
+      "confidence": "MEDIUM",
+      "fair_value": 56760.8312279854
+    },
+    {
+      "ticker": "TDM",
+      "sector": "UTILITIES",
+      "valuation_status": "OK_FALLBACK",
+      "fair_value_type": "FALLBACK_FAIR_VALUE",
+      "confidence": "MEDIUM",
+      "fair_value": 38262.91283893137
+    },
+    {
+      "ticker": "QTP",
+      "sector": "UTILITIES",
+      "valuation_status": "OK_FULL",
+      "fair_value_type": "FULL_FAIR_VALUE",
+      "confidence": "LOW",
+      "fair_value": 40097.86312682168
+    },
+    {
+      "ticker": "HND",
+      "sector": "UTILITIES",
+      "valuation_status": "OK_FULL",
+      "fair_value_type": "FULL_FAIR_VALUE",
+      "confidence": "LOW",
+      "fair_value": 52949.93373077009
+    },
+    {
+      "ticker": "ANV",
+      "sector": "CONSUMER_RETAIL",
+      "valuation_status": "OK_FULL",
+      "fair_value_type": "FULL_FAIR_VALUE",
+      "confidence": "LOW",
+      "fair_value": 26269.941813162084
+    },
+    {
+      "ticker": "HVN",
+      "sector": "TRANSPORT_LOGISTICS",
+      "valuation_status": "OK_FULL",
+      "fair_value_type": "FULL_FAIR_VALUE",
+      "confidence": "LOW",
+      "fair_value": 38014.34654803508
+    },
+    {
+      "ticker": "IMP",
+      "sector": "GENERAL_NORMAL",
+      "valuation_status": "OK_FULL",
+      "fair_value_type": "FULL_FAIR_VALUE",
+      "confidence": "LOW",
+      "fair_value": 16401.906801043006
+    },
+    {
+      "ticker": "DHG",
+      "sector": "GENERAL_NORMAL",
+      "valuation_status": "OK_FULL",
+      "fair_value_type": "FULL_FAIR_VALUE",
+      "confidence": "MEDIUM",
+      "fair_value": 164179.66064894758
+    }
+  ],
+  "orientation_verification_counts": {
+    "VERIFIED_ROE_ROA": 20,
+    "VERIFIED_REVENUE_GROWTH": 113
+  },
+  "debt_zero_evidence_tickers": [
+    "VNR",
+    "MIG",
+    "TCH",
+    "SHP",
+    "HND",
+    "THD"
+  ],
+  "method_dispersion_warning_count": 26,
+  "method_dispersion_warnings": [
+    {
+      "ticker": "GEG",
+      "sector": "UTILITIES",
+      "method_dispersion_ratio": 42.33882281855688,
+      "confidence": "LOW",
+      "fair_value": 33226.272112103514
+    },
+    {
+      "ticker": "THD",
+      "sector": "HOLDING_CONGLOMERATE",
+      "method_dispersion_ratio": 25.02574528311809,
+      "confidence": "LOW",
+      "fair_value": 22413.194523434955
+    },
+    {
+      "ticker": "IMP",
+      "sector": "GENERAL_NORMAL",
+      "method_dispersion_ratio": 12.825653637497073,
+      "confidence": "LOW",
+      "fair_value": 16401.906801043006
+    },
+    {
+      "ticker": "FRT",
+      "sector": "CONSUMER_RETAIL",
+      "method_dispersion_ratio": 10.497627105318404,
+      "confidence": "LOW",
+      "fair_value": 195465.74677587717
+    },
+    {
+      "ticker": "DBC",
+      "sector": "CONSUMER_RETAIL",
+      "method_dispersion_ratio": 9.416770782990527,
+      "confidence": "LOW",
+      "fair_value": 14433.305475061054
+    },
+    {
+      "ticker": "HND",
+      "sector": "UTILITIES",
+      "method_dispersion_ratio": 7.741914025556096,
+      "confidence": "LOW",
+      "fair_value": 52949.93373077009
+    },
+    {
+      "ticker": "MSN",
+      "sector": "HOLDING_CONGLOMERATE",
+      "method_dispersion_ratio": 7.218942427153946,
+      "confidence": "LOW",
+      "fair_value": 67184.35563017396
+    },
+    {
+      "ticker": "MCH",
+      "sector": "CONSUMER_RETAIL",
+      "method_dispersion_ratio": 6.842905570700602,
+      "confidence": "LOW",
+      "fair_value": 54287.06446472846
+    },
+    {
+      "ticker": "VCG",
+      "sector": "INDUSTRIAL_CONSTRUCTION",
+      "method_dispersion_ratio": 6.593687302107264,
+      "confidence": "LOW",
+      "fair_value": 36401.70389021264
+    },
+    {
+      "ticker": "HVN",
+      "sector": "TRANSPORT_LOGISTICS",
+      "method_dispersion_ratio": 5.488682568807456,
+      "confidence": "LOW",
+      "fair_value": 38014.34654803508
+    },
+    {
+      "ticker": "QTP",
+      "sector": "UTILITIES",
+      "method_dispersion_ratio": 4.890820630253584,
+      "confidence": "LOW",
+      "fair_value": 40097.86312682168
+    },
+    {
+      "ticker": "PC1",
+      "sector": "HOLDING_CONGLOMERATE",
+      "method_dispersion_ratio": 4.834698568208284,
+      "confidence": "LOW",
+      "fair_value": 35918.05855522114
+    },
+    {
+      "ticker": "CTD",
+      "sector": "INDUSTRIAL_CONSTRUCTION",
+      "method_dispersion_ratio": 4.735385756730786,
+      "confidence": "LOW",
+      "fair_value": 65623.32404363266
+    },
+    {
+      "ticker": "ANV",
+      "sector": "CONSUMER_RETAIL",
+      "method_dispersion_ratio": 4.659196922237728,
+      "confidence": "LOW",
+      "fair_value": 26269.941813162084
+    },
+    {
+      "ticker": "PGV",
+      "sector": "UTILITIES",
+      "method_dispersion_ratio": 4.24873076745384,
+      "confidence": "LOW",
+      "fair_value": 43493.82807903926
+    },
+    {
+      "ticker": "GMD",
+      "sector": "TRANSPORT_LOGISTICS",
+      "method_dispersion_ratio": 3.912769945934868,
+      "confidence": "MEDIUM",
+      "fair_value": 47859.16594015432
+    },
+    {
+      "ticker": "VSH",
+      "sector": "UTILITIES",
+      "method_dispersion_ratio": 3.2589324029198563,
+      "confidence": "MEDIUM",
+      "fair_value": 85040.43683334789
+    },
+    {
+      "ticker": "CHP",
+      "sector": "UTILITIES",
+      "method_dispersion_ratio": 3.2432210697561006,
+      "confidence": "MEDIUM",
+      "fair_value": 55773.79365403436
+    },
+    {
+      "ticker": "SHS",
+      "sector": "SECURITIES",
+      "method_dispersion_ratio": 2.834382489571046,
+      "confidence": "MEDIUM",
+      "fair_value": 16882.927037999998
+    },
+    {
+      "ticker": "TMS",
+      "sector": "TRANSPORT_LOGISTICS",
+      "method_dispersion_ratio": 2.6467419810889847,
+      "confidence": "MEDIUM",
+      "fair_value": 30980.962231126767
+    },
+    {
+      "ticker": "VHC",
+      "sector": "CONSUMER_RETAIL",
+      "method_dispersion_ratio": 2.5238017858043538,
+      "confidence": "MEDIUM",
+      "fair_value": 118225.42590649874
+    },
+    {
+      "ticker": "NT2",
+      "sector": "UTILITIES",
+      "method_dispersion_ratio": 2.512630141522426,
+      "confidence": "MEDIUM",
+      "fair_value": 43782.90778418003
+    },
+    {
+      "ticker": "VGC",
+      "sector": "HOLDING_CONGLOMERATE",
+      "method_dispersion_ratio": 2.503639153909928,
+      "confidence": "MEDIUM",
+      "fair_value": 39741.20415476289
+    },
+    {
+      "ticker": "SHP",
+      "sector": "UTILITIES",
+      "method_dispersion_ratio": 2.393679643333701,
+      "confidence": "MEDIUM",
+      "fair_value": 56760.8312279854
+    },
+    {
+      "ticker": "DHG",
+      "sector": "GENERAL_NORMAL",
+      "method_dispersion_ratio": 2.355433387589757,
+      "confidence": "MEDIUM",
+      "fair_value": 164179.66064894758
+    },
+    {
+      "ticker": "REE",
+      "sector": "UTILITIES",
+      "method_dispersion_ratio": 2.267015111453865,
+      "confidence": "MEDIUM",
+      "fair_value": 36164.3686700121
+    }
+  ],
+  "ev_ebitda_bridge_validation": {
+    "overlap_observations": 259,
+    "median_relative_error": 0.00031602018451492637,
+    "p90_relative_error": 0.0010598970422884483,
+    "max_relative_error": 0.05037257824143056,
+    "formula": "EV_EBITDA = EV_EBIT * EBIT_MARGIN / EBITDA_MARGIN"
+  },
+  "golden_regression": {
+    "VCB": {
+      "expected": 71687.18331406015,
+      "actual": 71687.18331406015,
+      "abs_diff": 0.0
+    },
+    "BVH": {
+      "expected": 45470.73937724999,
+      "actual": 45470.73937724999,
+      "abs_diff": 0.0
+    },
+    "VHM": {
+      "expected": 31642.24541519024,
+      "actual": 31642.24541519024,
+      "abs_diff": 0.0
+    },
+    "HPG": {
+      "expected": 14862.141221350914,
+      "actual": 14862.141221350914,
+      "abs_diff": 0.0
+    },
+    "MWG": {
+      "expected": 54117.0740689133,
+      "actual": 54117.0740689133,
+      "abs_diff": 0.0
+    },
+    "CTD": {
+      "expected": 65623.32404363266,
+      "actual": 65623.32404363266,
+      "abs_diff": 0.0
+    },
+    "SSI": {
+      "expected": 24533.797733399995,
+      "actual": 24533.797733399995,
+      "abs_diff": 0.0
+    },
+    "VIX": {
+      "expected": 13483.5353919958,
+      "actual": 13483.5353919958,
+      "abs_diff": 0.0
+    }
+  }
+}

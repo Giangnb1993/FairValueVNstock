@@ -1,0 +1,65 @@
+{
+  "BVH": {
+    "annual_orientation": "reversed",
+    "quarter_orientation": "normal",
+    "quarter_orientation_meta": {
+      "chosen": "normal",
+      "reason": "bvps_times_shares_equity_anchor",
+      "normal": {
+        "roe_calc": 0.03118225662313624,
+        "roa_calc": 0.0028253835250968548,
+        "roe_ref": 0.1075,
+        "roa_ref": 0.0029,
+        "latest_equity": 25557825434000.0,
+        "bvps_ref": 34429.53,
+        "shares": 742322764.0,
+        "implied_equity_from_bvps": 25557823872820.918,
+        "equity_anchor_error": 6.10841944055911e-08,
+        "ratio_error": 0.0763923598517669
+      },
+      "reversed": {
+        "roe_calc": 0.04061353505950714,
+        "roa_calc": 0.003665468687182764,
+        "roe_ref": 0.1075,
+        "roa_ref": 0.0029,
+        "latest_equity": 27324386689000.0,
+        "bvps_ref": 34429.53,
+        "shares": 742322764.0,
+        "implied_equity_from_bvps": 25557823872820.918,
+        "equity_anchor_error": 0.06912023593908974,
+        "ratio_error": 0.06765193362767562
+      },
+      "roe_calc": 0.03118225662313624,
+      "roa_calc": 0.0028253835250968548,
+      "roe_ref": 0.1075,
+      "roa_ref": 0.0029,
+      "latest_equity": 25557825434000.0,
+      "bvps_ref": 34429.53,
+      "shares": 742322764.0,
+      "implied_equity_from_bvps": 25557823872820.918,
+      "equity_anchor_error": 6.10841944055911e-08,
+      "ratio_error": 0.0763923598517669
+    },
+    "latest_equity": 25557825434000.0,
+    "latest_assets": 272801452711000.0,
+    "bvps_times_shares_error": 6.10841944055911e-08,
+    "parent_profit_mapping": {
+      "item": "31. Lợi nhuận sau thuế của cổ đông của Công ty mẹ",
+      "item_id": "profit_after_tax_for_shareholders_of_the_parent_company"
+    },
+    "long_debt_mapping": {
+      "item": "4. Vay và nợ thuê tài chính dài hạn",
+      "item_id": "long_term_borrowings"
+    },
+    "latest_short_debt": 4320774314000.0,
+    "latest_long_debt": 922000000.0,
+    "fair_value": 45470.73937724999
+  },
+  "VCB_REGRESSION": {
+    "annual_orientation": "reversed",
+    "quarter_orientation": "normal",
+    "fair_value": 71687.18331406015,
+    "short_debt_mapping": null,
+    "long_debt_mapping": null
+  }
+}

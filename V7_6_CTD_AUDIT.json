@@ -1,0 +1,132 @@
+{
+  "CTD": {
+    "sector": "INDUSTRIAL_CONSTRUCTION",
+    "annual_periods": [
+      "2026",
+      "2025",
+      "2024",
+      "2022"
+    ],
+    "annual_current_calendar_year_accepted": true,
+    "annual_orientation": "reversed",
+    "annual_orientation_meta": {
+      "normal_score": 0.1041315798870848,
+      "reversed_score": 6.180250859237624e-05,
+      "chosen": "reversed",
+      "roe_calc": 0.08464172023508111,
+      "roa_calc": 0.023020082273511273,
+      "roe_ref": 0.08460000000000001,
+      "roa_ref": 0.023,
+      "roe_row": {
+        "item": "Tỷ suất lợi nhuận trên vốn chủ sở hữu bình quân (ROEA)",
+        "item_id": "roe"
+      },
+      "roa_row": {
+        "item": "Tỷ suất sinh lợi trên tổng tài sản bình quân (ROAA)",
+        "item_id": "roa"
+      }
+    },
+    "quarter_orientation": "reversed",
+    "fiscal_year_flow_fallback": {
+      "latest_da": "completed_annual_same_fiscal_year",
+      "latest_cfo": "completed_annual_same_fiscal_year",
+      "latest_capex": "completed_annual_same_fiscal_year",
+      "latest_fcff_crosscheck": "completed_annual_same_fiscal_year"
+    },
+    "latest_revenue": 34339621318000.0,
+    "latest_net_income": 787889503000.0,
+    "latest_parent_profit": 787855481000.0,
+    "latest_equity": 9651883682000.0,
+    "latest_assets": 38750874266000.0,
+    "latest_cfo": 815837928000.0,
+    "latest_capex": 529271995000.0,
+    "latest_fcff": 552378797548.4838,
+    "method_values": {
+      "dcf_fcff": {
+        "bear": 81060.33367540875,
+        "base": 136218.5809636111,
+        "bull": 197058.51267842573,
+        "weight": 0.6
+      },
+      "pb": {
+        "bear": 60074.51577998994,
+        "base": 70675.90091763523,
+        "bull": 81277.2860552805,
+        "target_multiple": 0.818825327510917,
+        "historical_target": 0.77,
+        "justified_pb": 0.9327510917030569,
+        "bvps": 86313.7699129036
+      },
+      "pe": {
+        "bear": 48722.57979626234,
+        "base": 57320.682113249815,
+        "bull": 65918.78443023728,
+        "target_multiple": 16.74,
+        "historical_median_target": 16.74,
+        "target_multiple_method": {
+          "method": "cleaned_historical_median_after_earnings_normalization",
+          "historical_median": 16.74,
+          "confidence": "FALLBACK_3_VALID_PERIODS"
+        },
+        "normalized_eps": 3424.1745587365485,
+        "raw_base": 57320.682113249815,
+        "eps_normalization": null
+      },
+      "ev_ebitda": {
+        "bear": 24451.18513407144,
+        "base": 28766.100157731104,
+        "bull": 33081.015181390765,
+        "target_multiple": 10.48,
+        "normalized_ebitda": 498485976000.0,
+        "target_confidence": "STANDARD_4_PLUS_PERIODS"
+      }
+    },
+    "fair_value": 65623.32404363266,
+    "status": "OK_FULL",
+    "assumptions": {
+      "normalized_roe": 0.0834,
+      "bvps": 86313.7699129036,
+      "risk_free": 0.045,
+      "erp": 0.065,
+      "beta": 0.65,
+      "cost_of_equity": 0.08725,
+      "terminal_growth": 0.03,
+      "historical_pe_target": 16.74,
+      "pe_target_used": 16.74,
+      "pe_target_method": {
+        "method": "cleaned_historical_median_after_earnings_normalization",
+        "historical_median": 16.74,
+        "confidence": "FALLBACK_3_VALID_PERIODS"
+      },
+      "historical_pb_target": 0.77,
+      "historical_ev_ebitda_target": 10.48,
+      "historical_pe_target_confidence": "FALLBACK_3_VALID_PERIODS",
+      "historical_ev_ebitda_target_confidence": "STANDARD_4_PLUS_PERIODS",
+      "sector_weights": {
+        "ev_ebitda": 0.4,
+        "pe": 0.35,
+        "dcf_fcff": 0.25
+      },
+      "roe_normalization": {
+        "method": "existing_nonfinancial_reference",
+        "value": 0.0834
+      },
+      "eps_normalization": null,
+      "share_basis": {
+        "current_shares": 111823220.0,
+        "reported_shares_estimate": 114026467.0,
+        "share_change_ratio": 0.980677757910363,
+        "post_report_share_change_detected": true,
+        "valuation_bvps_source": "latest_equity/current_shares"
+      },
+      "note": "Financial-sector P/E uses independent normalized EPS; REAL_ESTATE is a proxy without RNAV; normal-company FCFF is not used unless sector=GENERAL_NORMAL."
+    }
+  },
+  "REGRESSION": {
+    "VCB": 71687.18331406015,
+    "BVH": 45470.73937724999,
+    "VHM": 31642.24541519024,
+    "HPG": 14862.141221350914,
+    "MWG": 54117.0740689133
+  }
+}

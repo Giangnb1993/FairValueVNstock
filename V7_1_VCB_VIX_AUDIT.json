@@ -1,0 +1,56 @@
+{
+  "VCB": {
+    "sector": "BANK",
+    "annual_orientation": "reversed",
+    "annual_orientation_meta": {
+      "normal_score": 0.03260195535984514,
+      "reversed_score": 4.9623238891691526e-05,
+      "chosen": "reversed",
+      "roe_calc": 0.1673033541860492,
+      "roa_calc": 0.015546269052842504,
+      "roe_ref": 0.1673,
+      "roa_ref": 0.0155,
+      "roe_row": {
+        "item": "Tỷ suất lợi nhuận trên vốn chủ sở hữu bình quân (ROEA)",
+        "item_id": "roe"
+      },
+      "roa_row": {
+        "item": "Tỷ suất sinh lợi trên tổng tài sản bình quân (ROAA)",
+        "item_id": "roa"
+      }
+    },
+    "quarter_orientation": "normal",
+    "quarter_orientation_meta": {
+      "normal_score": 0.0013706428922964447,
+      "reversed_score": 0.02508664359160368,
+      "chosen": "normal",
+      "reason": "quarter_roe_roa_validation",
+      "roe_calc": 0.0400844033879074,
+      "roa_calc": 0.0037449537197961538,
+      "roe_ref": 0.041299999999999996,
+      "roa_ref": 0.0039000000000000003
+    },
+    "latest_period": "2026-Q2",
+    "latest_equity": 222791545000000.0,
+    "latest_assets": 2378185628000000.0,
+    "current_roe": 0.1672,
+    "current_roa": 0.016,
+    "current_eps": 5008.22,
+    "current_bvps": 26663.5,
+    "normalized_roe": 0.18739999999999998,
+    "normalized_eps": 6053.11,
+    "pe_target": 12.645,
+    "pb_base": 70684.2034160401,
+    "pe_base": 76541.57595,
+    "ri_base": 70122.55472013366,
+    "fair_value": 71687.18331406015,
+    "market_price": 59600.0
+  },
+  "VIX_REGRESSION": {
+    "annual_orientation": "reversed",
+    "quarter_orientation": "normal",
+    "latest_equity": 20168052154000.0,
+    "latest_assets": 31534673038000.0,
+    "fair_value": 13483.5353919958
+  }
+}

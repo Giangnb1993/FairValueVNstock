@@ -1,0 +1,51 @@
+{
+  "version": "V8.3 SYSTEMIC-CONTRACT-FIX",
+  "source_batch_tickers": 131,
+  "offline_rerun_total": 131,
+  "unhandled_crashes": 0,
+  "validation_status_counts": {
+    "PARTIAL": 57,
+    "AUTO_FIXED": 45,
+    "PASS": 26,
+    "NEEDS_REVIEW": 3
+  },
+  "valuation_status_counts": {
+    "PARTIAL": 58,
+    "OK_FULL": 54,
+    "OK_PROXY_NO_RNAV": 14,
+    "OK_PROXY_NO_SOTP": 4,
+    "NOT_RUN": 1
+  },
+  "hard_error_tickers": [
+    {
+      "ticker": "NTC",
+      "hard_error_class": "E202_DEBT_INCONSISTENT"
+    },
+    {
+      "ticker": "HND",
+      "hard_error_class": "E202_DEBT_INCONSISTENT"
+    },
+    {
+      "ticker": "HVN",
+      "hard_error_class": "E103_ANNUAL_ORIENTATION_UNVERIFIED;E501_DATA_QUALITY_FAIL"
+    }
+  ],
+  "golden_regression": {
+    "VCB": 71687.18331406015,
+    "BVH": 45470.73937724999,
+    "VHM": 31642.24541519024,
+    "HPG": 14862.141221350914,
+    "MWG": 54117.0740689133,
+    "CTD": 65623.32404363266
+  },
+  "not_run_tickers": [
+    "HVN"
+  ],
+  "notes": [
+    "CYCLICAL missing historical EV/EBITDA -> PARTIAL, not data-quality NOT_RUN",
+    "sector DCF unavailability -> PARTIAL, not data-quality NOT_RUN",
+    "explicit all-null provider debt field may be inferred zero with provenance",
+    "E305 is WARN-only because BVPS is not period-matched to remapped balance",
+    "weights unchanged; no silent redistribution"
+  ]
+}

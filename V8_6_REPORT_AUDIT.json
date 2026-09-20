@@ -1,0 +1,26 @@
+{
+  "version": "V8.6 Screening Report",
+  "universe": 133,
+  "selected": 49,
+  "filter": {
+    "screening_score_gt": 75,
+    "price_to_fv_lt": 0.85
+  },
+  "weights": {
+    "valuation": 0.35,
+    "quality": 0.3,
+    "risk": 0.2,
+    "confidence": 0.15
+  },
+  "outputs": [
+    "market_report.csv",
+    "telegram_report.json",
+    "telegram_report.txt"
+  ],
+  "regression": "Report layer only; valuation engine unchanged from V8.5",
+  "checks": [
+    "all selected score >75",
+    "all selected Price/FV <0.85",
+    "sorted score descending"
+  ]
+}

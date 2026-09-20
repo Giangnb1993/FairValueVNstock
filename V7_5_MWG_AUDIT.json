@@ -1,0 +1,145 @@
+{
+  "MWG": {
+    "sector": "CONSUMER_RETAIL",
+    "annual_orientation": "reversed",
+    "quarter_orientation": "normal",
+    "debt_derivation": {
+      "long_debt": "derived_zero_from_total_liabilities_equals_current_liabilities",
+      "total_liabilities": 48491298270000.0,
+      "current_liabilities": 48491298270000.0,
+      "gap": 0.0,
+      "tolerance": 242456491350.0
+    },
+    "short_debt": 28705630116000.0,
+    "long_debt": 0.0,
+    "total_debt": 28705630116000.0,
+    "historical_pe_standard": {
+      "status": "NOT_ENOUGH_DATA",
+      "target": null,
+      "series": {
+        "2025": 18.52,
+        "2024": 23.96,
+        "2022": 11.77
+      },
+      "count": 3,
+      "cleaning": {
+        "valid_before_iqr": 3,
+        "valid_after_iqr": 3,
+        "hard_bounds": [
+          3.0,
+          80.0
+        ]
+      },
+      "source": "provider_ratio_time_series",
+      "raw_series": {
+        "2025": 18.52,
+        "2024": 23.96,
+        "2023": 373.43,
+        "2022": 11.77
+      },
+      "provider_series": {
+        "2025": 18.52,
+        "2024": 23.96,
+        "2023": 373.43,
+        "2022": 11.77
+      }
+    },
+    "historical_ev_ebitda_standard": {
+      "status": "NOT_ENOUGH_DATA",
+      "target": null,
+      "series": {
+        "2023": 15.0,
+        "2022": 6.78
+      },
+      "count": 2,
+      "cleaning": {
+        "valid_before_iqr": 2,
+        "valid_after_iqr": 2,
+        "hard_bounds": [
+          2.0,
+          35.0
+        ]
+      },
+      "source": "provider_ratio_time_series",
+      "raw_series": {
+        "2025": 0.0,
+        "2024": 0.0,
+        "2023": 15.0,
+        "2022": 6.78
+      },
+      "provider_series": {
+        "2025": 0.0,
+        "2024": 0.0,
+        "2023": 15.0,
+        "2022": 6.78
+      },
+      "computed_audit": {
+        "status": "NOT_ENOUGH_DATA",
+        "target": null,
+        "series": {},
+        "count": 0,
+        "cleaning": {
+          "valid_before_iqr": 0,
+          "valid_after_iqr": 0,
+          "hard_bounds": [
+            2.0,
+            35.0
+          ]
+        }
+      },
+      "computed_series": {}
+    },
+    "pe_target_used": 18.52,
+    "pe_target_confidence": "FALLBACK_3_VALID_PERIODS",
+    "ev_target_used": 10.89,
+    "ev_target_confidence": "LOW_CONFIDENCE_FALLBACK_2_VALID_PERIODS",
+    "methods": {
+      "dcf_fcff": {
+        "bear": 39496.33625844854,
+        "base": 59344.50794161423,
+        "bull": 85707.51858853277,
+        "weight": 0.6
+      },
+      "pb": {
+        "bear": 49554.03981552764,
+        "base": 58298.87037120899,
+        "bull": 67043.70092689033,
+        "target_multiple": 2.7056249999999995,
+        "historical_target": 2.925,
+        "justified_pb": 1.7447698744769877,
+        "bvps": 21547.284036482884
+      },
+      "pe": {
+        "bear": 41790.033906549106,
+        "base": 49164.745772410715,
+        "bull": 56539.45763827232,
+        "target_multiple": 18.52,
+        "historical_median_target": 18.52,
+        "target_multiple_method": {
+          "method": "cleaned_historical_median_after_earnings_normalization",
+          "historical_median": 18.52,
+          "confidence": "FALLBACK_3_VALID_PERIODS"
+        },
+        "normalized_eps": 2654.6838969984187,
+        "raw_base": 49164.745772410715,
+        "eps_normalization": null
+      },
+      "ev_ebitda": {
+        "bear": 43894.83405526147,
+        "base": 51640.981241484085,
+        "bull": 59387.128427706695,
+        "target_multiple": 10.89,
+        "normalized_ebitda": 9127741465500.0,
+        "target_confidence": "LOW_CONFIDENCE_FALLBACK_2_VALID_PERIODS"
+      }
+    },
+    "fair_value": 54117.0740689133,
+    "status": "OK_FULL"
+  },
+  "REGRESSION": {
+    "VCB": 71687.18331406015,
+    "BVH": 45470.73937724999,
+    "VHM": 31642.24541519024,
+    "HPG": 14862.141221350914
+  }
+}

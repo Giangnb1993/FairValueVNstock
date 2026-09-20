@@ -1,2 +1,453 @@
-# FairValue-Ch-ng-kho-n
-Gửi FV của các mã chứng khoán
+# VN Stock Canonical Build
+
+Bản này viết lại lõi để xử lý dứt điểm lỗi lệch năm.
+
+## Nguyên tắc
+Chương trình xác định **một orientation duy nhất** (`normal` hoặc `reversed`) bằng ROE/ROA độc lập. Sau đó tất cả dòng BCTC đều dùng cùng orientation:
+
+Revenue, LNST, parent profit, PBT, interest, D&A, EPS, equity, assets, cash, debt, current assets/liabilities, CFO, CAPEX.
+
+Không dùng `time_series` BCTC trong đường tính chính nữa.
+
+## Request
+Thông thường khoảng 6 request/mã:
+- quote
+- company info
+- income statement
+- balance sheet
+- cash flow
+- ratio
+
+OHLCV chỉ gọi thêm nếu quote không có giá.
+
+## Chạy
+```powershell
+python main.py FPT
+```
+
+## Self test offline
+```powershell
+python selftest.py
+```
+
+Phải hiện `SELFTEST PASS`.
+
+## Quy tắc an toàn
+- Nếu canonical orientation không xác minh được -> dừng.
+- Nếu thiếu PBT / interest / D&A / debt / ΔNWC / FCFF -> DATA QUALITY FAIL.
+- P/E chỉ dùng khi bắt được dòng Basic EPS trong BCTC.
+- Nếu EPS thiếu thì bỏ P/E, không tự lấy ratio EPS thay thế.
+- Ngân hàng/chứng khoán/bảo hiểm không chạy mô hình FCFF doanh nghiệp thường.
+
+
+## Canonical Final fixes
+
+- One year orientation remains mandatory for every statement line.
+- Interest expense is searched in Income Statement, then Cash Flow.
+- EBIT hierarchy:
+  1. explicit Operating Profit / Profit from business operations;
+  2. PBT + Interest Expense.
+- EPS upstream scale is normalized when it is implausibly larger than the share price.
+  The scale factor is printed in the report.
+- Working capital is now Operating NWC:
+  `(Current Assets - Cash) - (Current Liabilities - Short-term Debt)`.
+- Provider P/E/P/B are kept separate from transparently calculated current P/E/P/B.
+  Calculated current multiples are audit-only and are not used as fair-value targets.
+- Missing interest expense no longer blocks DCF if a valid Operating Profit/EBIT exists.
+
+
+## FCFF Final rule
+
+Production DCF now uses:
+
+`FCFF = CFO + Interest Expense × (1 - Tax Rate) - CAPEX`
+
+Why:
+- CFO already incorporates the company's reported working-capital cash movements.
+- Broad balance-sheet reconstruction of working capital can be distorted by non-operating current items.
+- Therefore `Delta Operating NWC` is audit-only.
+
+The traditional formula:
+
+`EBIT × (1-T) + D&A - CAPEX - Delta Operating NWC`
+
+is still calculated as `FCFF cross-check`, but it is not used as the DCF base input.
+
+If explicit interest expense is unavailable, the primary formula naturally reduces to:
+
+`FCFF = CFO - CAPEX`
+
+rather than fabricating an interest adjustment.
+
+
+## Full Fair Value: 60% DCF + 25% P/E + 15% EV/EBITDA
+
+Baseline DCF/FCFF/WACC and canonical mapper are unchanged.
+
+New isolated historical-multiples layer:
+- fetches up to 8 annual time-series periods from VNStock;
+- fetches daily OHLCV for historical year-end prices;
+- year-end price = median close of the last 20 trading sessions of each year;
+- historical P/E target = median of cleaned valid P/E observations;
+- historical EV/EBITDA target = median of cleaned internally-consistent EV/EBITDA observations;
+- time-series accounting fields must reconcile with canonical latest-year values before use;
+- historical share count is validated against current outstanding shares;
+- current P/E is never used as its own target multiple;
+- provider EV/EBITDA is audit-only when it does not use the same EBITDA definition as the canonical engine.
+
+Final Fair Value is emitted only when all 3 methods pass:
+`0.60*DCF + 0.25*P/E + 0.15*EV/EBITDA`.
+No silent weight re-normalization is allowed.
+
+
+## V3 — provider historical multiples
+
+Root cause confirmed from the user's real VNStock schemas:
+
+- `ratio_ts` directly exposes `pe_ratio`, `pb_ratio`, and `ev_ebitda`.
+- Therefore historical EV/EBITDA no longer depends on reconstructing historical
+  market cap from historical shares + historical prices.
+- Historical P/E and EV/EBITDA now both use the provider ratio time series.
+- Computed EV/EBITDA is kept only as an audit path.
+- `owners_capital` is added as the real balance-sheet historical capital field.
+- Current DCF, FCFF, WACC, canonical mapper and 60/25/15 weights are unchanged.
+- If VNStock returns only 4 annual rows, the tool uses those 4; it does not invent 8.
+
+
+## V4 Sector-aware valuation
+- NORMAL: unchanged 60% DCF FCFF + 25% historical P/E + 15% historical EV/EBITDA.
+- SECURITIES: 50% P/B+ROE + 30% normalized P/E + 20% residual income.
+- BANK: 50% P/B+ROE + 30% residual income + 20% normalized P/E.
+- INSURANCE: 45% P/B + 30% normalized P/E + 25% residual income.
+- CYCLICAL: 50% normalized EV/EBITDA + 30% normalized P/E + 20% P/B.
+- REAL_ESTATE: 50% P/B + 30% normalized P/E + 20% residual income, explicitly marked
+  OK_PROXY_NO_RNAV because generic VNStock statements do not contain project-level RNAV.
+
+Financial-sector validation no longer treats CFO/FCFF as critical.
+The NORMAL V3 valuation engine is preserved unchanged.
+
+
+## V5 Sector Matrix — 12 valuation families
+
+1. BANK
+2. SECURITIES
+3. INSURANCE
+4. REAL_ESTATE
+5. CYCLICAL_COMMODITY
+6. UTILITIES
+7. TECHNOLOGY_ASSET_LIGHT
+8. CONSUMER_RETAIL
+9. INDUSTRIAL_CONSTRUCTION
+10. TRANSPORT_LOGISTICS
+11. HOLDING_CONGLOMERATE
+12. GENERAL_NORMAL
+
+Core principles:
+- GENERAL_NORMAL keeps V3's 60/25/15 DCF/P-E/EV-EBITDA engine unchanged.
+- Financial sectors do not require normal-company CFO/FCFF.
+- Cyclicals use normalized EV/EBITDA and normalized earnings.
+- Utilities/technology/consumer/logistics can reuse the proven DCF engine with sector weights.
+- REAL_ESTATE is marked OK_PROXY_NO_RNAV when generic VNStock lacks project-level RNAV.
+- HOLDING_CONGLOMERATE is marked OK_PROXY_NO_SOTP when generic VNStock lacks segment-level SOTP inputs.
+- Missing required methods produce PARTIAL instead of fabricated fair value.
+
+
+## V6 Dynamic Latest / TTM
+
+Data policy:
+- Never hard-code a reporting year or exactly 4/8 annual periods.
+- Fetch annual history and quarterly history separately; use every period returned by VNStock.
+- Current flow fundamentals use TTM from the latest four consecutive quarters when validated.
+- Current balance-sheet fundamentals use the latest available quarter.
+- Quarterly flow representation is reconciled against annual statements to detect standalone-quarter vs cumulative-YTD data.
+- If TTM cannot be validated, fall back explicitly instead of fabricating values.
+- Historical valuation multiples use all valid annual periods returned by the provider.
+- Sector Matrix V5 valuation families remain unchanged.
+
+The engine therefore rolls forward automatically as 2026/2027/etc. reports appear.
+
+
+## V6.1 duplicate-column hotfix
+- Root cause: VNStock quarterly DataFrames may contain duplicate column labels.
+- `quarter_metric()` now selects columns by physical position (`iloc`) rather than assuming labels are unique.
+- Each duplicate candidate is scored independently; the most numeric valid candidate wins.
+- TTM/latest-quarter logic, sector matrix, FCFF/WACC and valuation weights are unchanged.
+
+
+## V6.2 — current-basis consistency + dynamic ROE
+
+Fixes:
+1. Recompute dependent metrics after TTM/latest-quarter overrides.
+   - EBITDA = current EBIT + current D&A only when both are current.
+   - Current EBITDA becomes N/A rather than silently retaining stale annual EBITDA.
+2. Latest total debt is only produced when both short- and long-debt components
+   are available for the latest quarter. Mixed-period totals are forbidden.
+3. Financial-sector normalized ROE is dynamic:
+   - 40% latest TTM calculated ROE when TTM exists.
+   - 60% distributed across every annual ROE period returned by provider,
+     with exponential recency decay.
+   - bounded against the median of annual history + current TTM.
+4. Historical year-end prices no longer have a hard-coded 8-year cap.
+   The provider/API determines how many periods are available.
+
+
+## V6.3 ROOT-FIX — verified against uploaded VIX raw data
+- Quarterly statement time-series reuse the annual canonical orientation.
+- VIX raw proves statement values are reversed across quarter labels.
+- Ratio time-series remain independent and are not reversed.
+- Alias order is semantic priority and empty aliases are ignored.
+- Partial completed-year Q4-vs-FY evidence can verify standalone quarter semantics.
+- Unknown flow semantics are not silently promoted to TTM.
+- Missing TTM/latest-quarter fields become N/A instead of carrying stale annual values.
+
+
+## V6.4 — strict TTM validation + independent EPS
+
+1. `Q4 != FY` is classified only as `not_ytd_unverified`; it no longer proves standalone quarters.
+2. TTM flow values are accepted only when quarterly semantics are actually verified.
+3. When TTM cannot be verified, the model can still use latest-quarter balance-sheet values
+   and independent provider trailing ratios.
+4. Financial-sector P/E no longer derives EPS from `BVPS * normalized ROE`.
+   It uses independent normalized EPS:
+   - latest provider trailing EPS (preferred),
+   - verified calculated TTM EPS,
+   - all available annual EPS with recency weighting.
+5. P/B+ROE, P/E, and residual-income methods are therefore materially more independent.
+
+
+## V6.5 — cycle-aware securities P/E + mixed-period ROE guard
+
+1. Securities P/E target is no longer a fixed historical median.
+   It weights historical P/E observations by EPS similarity to current normalized EPS,
+   with mild recency decay, and keeps the target within the observed historical P/E range.
+2. If flows are annual fallback while balance sheet is latest-quarter,
+   self-calculated ROE/ROA are not exposed as current values.
+   Annual calculations remain audit metadata; provider trailing ROE/ROA remain current references.
+3. VIX regression using V6.4 inputs:
+   cycle-aware P/E target ≈ 9.5964x vs fixed median 10.67x;
+   raw P/E fair value ≈ 22171.42 before any existing PB-relative guard.
+
+
+## V7.1 BANK-ORIENTATION-FIX
+
+Root-cause changes:
+- Bank annual equity includes `capital_and_reserves`.
+- Annual and quarterly statement orientations are validated independently.
+- Quarterly orientation uses provider plain-quarter ROE/ROA versus statement-implied ROE/ROA.
+- Provider ROE/ROA values are normalized consistently from percentage points.
+- Quarterly bank equity includes `capital_and_reserves`.
+- VCB raw regression: annual=reversed, quarterly=normal.
+- VIX raw regression: annual=reversed, quarterly=normal; locked SECURITIES fair value remains unchanged.
+
+Audit file: `V7_1_VCB_VIX_AUDIT.json`.
+
+
+## V7.2 — Financial orientation lock
+- Quarter orientation primary anchor: latest provider BVPS × shares vs statement equity.
+- Plain quarter ROE/ROA are diagnostic/secondary only.
+- Insurance parent-profit mapping added.
+- Short/long debt mapping is strict; asset rows cannot be accepted as debt.
+- BVH raw regression: annual=reversed, quarter=normal.
+- VCB raw regression: annual=reversed, quarter=normal; fair value unchanged.
+- Financial valuation formulas and weights are unchanged.
+
+## V7.3 — Real-estate share-basis fix
+- Quarter orientation uses report-period shares from owners/paid-in capital / 10,000.
+- Post-report share changes are detected explicitly.
+- REAL_ESTATE BVPS = latest statement equity / current shares.
+- REAL_ESTATE normalized EPS prefers parent-attributable profit / current shares.
+- RNAV remains unavailable from generic VNStock, so REAL_ESTATE stays proxy-only.
+- VCB BANK and BVH INSURANCE regression values are unchanged.
+
+
+## V7.4 — Utility period + blend safety fix
+- Sector blend validates every required bear/base/bull value before weighting. Missing/invalid methods return PARTIAL; weights are never silently redistributed.
+- Quarterly balance stock rows are remapped only when company history proves a capital change occurred before the report quarter and another raw row matches the already-effective current paid-in capital.
+- POW raw resolves the mislabeled balance row to the balance data corresponding to Q2/2026.
+- VCB, BVH, VHM and HPG valuation outputs are regression-tested unchanged.
+
+
+## V7.5 — Consumer Retail fix
+- Quarterly long-term debt may be derived as zero only when total liabilities and
+  current liabilities reconcile within 0.5%, proving there are no long-term liabilities.
+- Standard historical multiple requirement remains 4 valid periods.
+- Model fallback is explicit:
+  - P/E: 3 valid cleaned periods -> `FALLBACK_3_VALID_PERIODS`.
+  - EV/EBITDA: 2 valid cleaned periods from a >=4-row provider series ->
+    `LOW_CONFIDENCE_FALLBACK_2_VALID_PERIODS`.
+- CONSUMER_RETAIL and TECHNOLOGY_ASSET_LIGHT now actually build EV/EBITDA methods,
+  matching their locked sector weights.
+- VCB, BVH, VHM and HPG fair values are regression-tested unchanged.
+
+
+## V7.6 — Fiscal-year support / CTD fix
+- Annual statements no longer discard the current calendar year automatically.
+- The annual endpoint is trusted; only future years are excluded.
+- This supports non-calendar fiscal-year companies such as CTD.
+- If verified Q1..Q4 income is the same completed fiscal year but quarterly
+  cash-flow detail is incomplete, missing CFO/CAPEX/D&A may come from that
+  completed annual cash-flow statement only; the fallback is explicitly audited.
+- CTD annual orientation resolves to `reversed`; FY2026 revenue/profit/equity
+  reconcile with provider ROE/ROA and INDUSTRIAL_CONSTRUCTION completes its blend.
+- VCB, BVH, VHM, HPG and MWG fair values are regression-tested unchanged.
+
+
+# V8 — VALIDATION FIRST / BATCH AUDIT
+
+V8 changes the workflow from "fix each ticker" to "classify each failure pattern".
+
+## Pipeline
+
+RAW FETCH
+→ CANONICAL FINANCIAL DATA
+→ VALIDATION CONTRACTS
+→ ANOMALY / AUTO-FIX CLASSIFICATION
+→ SECTOR VALUATION
+→ BATCH SUMMARY
+
+Valuation formulas and locked sector weights from V7.6 are preserved.
+
+## Single ticker
+
+```powershell
+python main.py FPT
+```
+
+## Batch from a text file
+
+Create `tickers.txt`, one ticker per line:
+
+```text
+VCB
+BVH
+VHM
+HPG
+MWG
+CTD
+POW
+```
+
+Run:
+
+```powershell
+python main.py --batch-file tickers.txt --output batch_output
+```
+
+Or:
+
+```powershell
+python main.py --batch "VCB,BVH,VHM,HPG,MWG,CTD,POW" --output batch_output
+```
+
+V8 defaults to 16 seconds between NEW live ticker fetches because one ticker uses
+many VNStock endpoints. Existing `output/TICKER/raw` snapshots are automatically
+reused unless `--no-reuse-raw` is supplied.
+
+## Batch outputs
+
+- `batch_summary.csv` — one row per ticker
+- `batch_summary.json` — totals / status counts / all rows
+- `error_groups.json` — tickers grouped by error code
+- `TICKER/validation_report.json` — full structured audit per ticker
+- `TICKER/raw/*.csv` — raw snapshot cache
+- existing `metrics.json`, `data_quality.json`, `valuation.json`
+
+The intended operating target is **zero unhandled batch crashes**. A bad ticker
+must become a structured status/error code and must not stop the remaining batch.
+
+## Validation statuses
+
+- `PASS`: no material validation anomaly.
+- `AUTO_FIXED`: canonical engine detected and safely corrected a known pattern.
+- `PARTIAL`: data can be audited but the locked sector valuation cannot produce a full blend.
+- `NEEDS_REVIEW`: a hard data/contract issue exists.
+
+## Error taxonomy
+
+Examples:
+
+- `E001_FETCH_FAILURE`
+- `E101_ANNUAL_ORIENTATION_AMBIGUOUS`
+- `E102_QUARTER_ORIENTATION_AMBIGUOUS`
+- `E201_ACCOUNTING_IDENTITY_MISMATCH`
+- `E202_DEBT_INCONSISTENT`
+- `E203_SHARE_BASIS_CHANGE`
+- `E204_SHARE_HISTORY_MISMATCH`
+- `E301_PERIOD_REMAP`
+- `E302_CURRENT_FISCAL_YEAR`
+- `E303_QUARTER_FLOW_UNVERIFIED`
+- `E304_FISCAL_FLOW_FALLBACK`
+- `E401_HIST_PE_INSUFFICIENT`
+- `E402_HIST_EV_EBITDA_INSUFFICIENT`
+- `E403_VALUATION_METHOD_MISSING`
+- `E404_VALUATION_PARTIAL`
+- `E501_DATA_QUALITY_FAIL`
+- `E901_STAGE_EXCEPTION`
+
+Do not fix tickers individually from the batch table. Group by `error_class`,
+inspect all tickers in the same group, and change one general rule only after
+the group demonstrates the same root cause.
+
+
+## V8.2 — Systemic fix from 201-ticker batch
+- Empty CSV raw snapshots no longer crash the batch.
+- Validated family mapping for all 201 stress-test symbols.
+- Market-price reference/history units normalized to VND.
+- Unverified annual orientation is non-crashing and blocks valuation.
+- NOT_RUN can never be validation PASS.
+- Period remap gets a secondary BVPS×shares≈equity audit.
+- Extreme DCF divergence (>8x relative-method median) is withheld as PARTIAL.
+- Batch reports split hard errors/warnings/info/auto-fixes.
+
+## V8.3 — Systemic contract fix from 131-ticker raw audit
+- CYCLICAL_COMMODITY: insufficient historical EV/EBITDA is no longer a hard data-quality failure; valuation becomes PARTIAL if the required method is unavailable.
+- Explicit short/long debt fields that exist but are entirely null are interpreted as zero borrowing components with provenance. Absent schema fields remain missing.
+- E305 remap BVPS anchor is diagnostic WARN only because current ratio BVPS is not period-matched to the remapped balance row.
+- No valuation weights are redistributed and no missing method is silently substituted.
+
+- CFO/FCFF availability in multi-method sector models is no longer a hard
+  data-quality blocker. If DCF cannot be built, the locked blend remains
+  PARTIAL; weights are not redistributed.
+
+
+## V8.4 — Fallback + Confidence Engine
+
+V8.4 targets higher usable fair-value coverage while preserving fail-safe behavior.
+
+- Recover missing historical target multiples first. P/E: >=4 cleaned periods = standard; 3 = explicit medium-confidence recovery; 2 is accepted only when the provider/raw endpoint returned >=4 historical rows and is marked low-confidence. EV/EBITDA: 2-period recovery uses the same >=4-row evidence gate. Current market multiples are never used as fair targets.
+- Full-model formulas and locked weights are unchanged whenever all required methods are available.
+- Missing full methods do not trigger generic reweighting. Only pre-defined sector-specific two-method fallback formulas may run.
+- Every fallback requires at least two independent positive methods and max(base)/min(base) <= 2.25. Ratio <=1.50 => MEDIUM confidence; 1.50–2.25 => LOW. Any low-confidence recovered multiple caps fallback confidence at LOW.
+- One method alone never produces fair value.
+- If DCF fails the existing cross-method sanity gate, DCF is excluded and an approved non-DCF fallback may be attempted.
+- Output distinguishes `FULL_FAIR_VALUE` and `FALLBACK_FAIR_VALUE`, with `confidence`, `fallback_methodology`, `fallback_weights`, and `method_agreement_ratio`.
+
+
+## V8.5 — Systemic Evidence Fix
+
+Validated offline against the user's latest 133-ticker raw batch.
+
+- 133/133 processed, 0 unhandled crashes.
+- 128/133 produce a fair value (102 full/proxy + 26 approved fallback).
+- 5 remain PARTIAL by design: POW, VNZ, VIC, HUT, GEL.
+- Annual orientation can be independently verified by annual revenue-growth reconciliation against `ratio_ts.net_revenue`.
+- Zero debt is inferred only from exact-quarter evidence: both explicit borrowing fields null plus provider `debt_to_assets == 0`, with no balance-period remap.
+- Historical EV/EBITDA recovery preserves valid provider observations and fills missing/zero annual values using `EV/EBIT * EBIT margin / EBITDA margin`; at least 3 cleaned years are required. Across 259 provider observations where direct EV/EBITDA exists, this identity reproduced the provider value with median relative error 0.0316%.
+- Full/proxy valuations with method dispersion above 2.25x keep their locked fair value but receive `E411_METHOD_DISPERSION_HIGH` and capped confidence.
+- Locked regression values VCB/BVH/VHM/HPG/MWG/CTD/SSI/VIX remain unchanged.
+
+
+## V8.6 — Screening Report Engine
+
+Sau khi batch chạy xong, tool tự tạo thêm:
+- `market_report.csv`: toàn bộ universe kèm Screening Score và 4 score thành phần.
+- `telegram_report.json`: chỉ các mã có `Screening Score > 75` và `Price/FV < 0.85`.
+- `telegram_report.txt`: danh sách một dòng/mã để gửi Telegram.
+
+Screening Score = 35% Valuation + 30% Quality + 20% Risk + 15% Confidence.
+Điểm này chỉ dùng để sàng lọc; không phải tín hiệu mua/bán.
+
+Telegram format:
+`1. FPT | 84đ | Giá 92k | FV 108.5k | +17.9% | HIGH`
+
+Danh sách Telegram được sắp xếp theo Screening Score giảm dần.

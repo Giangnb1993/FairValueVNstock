@@ -1,0 +1,502 @@
+{
+  "version": "V8.4",
+  "total": 131,
+  "crash_count": 0,
+  "validation_status_counts": {
+    "AUTO_FIXED": 66,
+    "PASS": 47,
+    "PARTIAL": 15,
+    "NEEDS_REVIEW": 3
+  },
+  "valuation_status_counts": {
+    "OK_FULL": 55,
+    "OK_FALLBACK": 39,
+    "PARTIAL": 16,
+    "OK_PROXY_NO_RNAV": 15,
+    "OK_PROXY_NO_SOTP": 5,
+    "NOT_RUN": 1
+  },
+  "fair_value_type_counts": {
+    "FULL_FAIR_VALUE": 75,
+    "FALLBACK_FAIR_VALUE": 39,
+    "NaN": 17
+  },
+  "confidence_counts": {
+    "MEDIUM": 51,
+    "HIGH": 47,
+    "NaN": 17,
+    "LOW": 16
+  },
+  "usable_fair_value_count": 114,
+  "fallback_fair_value_count": 39,
+  "partial_count": 16,
+  "not_run_count": 1,
+  "golden_fair_values": {
+    "VCB": 71687.18331406015,
+    "BVH": 45470.73937724999,
+    "VHM": 31642.24541519024,
+    "HPG": 14862.141221350914,
+    "MWG": 54117.0740689133,
+    "CTD": 65623.32404363266
+  },
+  "PAN": {
+    "ticker": "PAN",
+    "sector": "CONSUMER_RETAIL",
+    "validation_status": "AUTO_FIXED",
+    "data_quality_status": "PASS",
+    "data_quality_score": 100.0,
+    "valuation_status": "OK_FALLBACK",
+    "fair_value_type": "FALLBACK_FAIR_VALUE",
+    "confidence": "MEDIUM",
+    "fair_value": 32756.45449069028,
+    "market_price": 18600.0,
+    "fallback_methodology": "CONSUMER_FALLBACK_PE_EV",
+    "method_agreement_ratio": 1.0542415788362145,
+    "latest_period": "2026-Q2",
+    "auto_fixed_count": 1,
+    "review_required": false,
+    "hard_error_class": NaN,
+    "warning_class": NaN,
+    "info_class": "E203_SHARE_BASIS_CHANGE;E303_QUARTER_FLOW_UNVERIFIED;E408_FALLBACK_FAIR_VALUE",
+    "auto_fix_class": "E203_SHARE_BASIS_CHANGE",
+    "issue_class": "E203_SHARE_BASIS_CHANGE;E303_QUARTER_FLOW_UNVERIFIED;E408_FALLBACK_FAIR_VALUE",
+    "missing_methods": NaN,
+    "source": "RAW_ROOT"
+  },
+  "HVN": {
+    "ticker": "HVN",
+    "sector": "TRANSPORT_LOGISTICS",
+    "validation_status": "NEEDS_REVIEW",
+    "data_quality_status": "FAIL_CRITICAL",
+    "data_quality_score": 73.3,
+    "valuation_status": "NOT_RUN",
+    "fair_value_type": NaN,
+    "confidence": NaN,
+    "fair_value": NaN,
+    "market_price": 20900.0,
+    "fallback_methodology": NaN,
+    "method_agreement_ratio": NaN,
+    "latest_period": "2026-Q2",
+    "auto_fixed_count": 0,
+    "review_required": true,
+    "hard_error_class": "E103_ANNUAL_ORIENTATION_UNVERIFIED;E501_DATA_QUALITY_FAIL",
+    "warning_class": "E204_SHARE_HISTORY_MISMATCH;E406_VALUATION_NOT_RUN",
+    "info_class": "E303_QUARTER_FLOW_UNVERIFIED;E401_HIST_PE_INSUFFICIENT;E402_HIST_EV_EBITDA_INSUFFICIENT",
+    "auto_fix_class": NaN,
+    "issue_class": "E103_ANNUAL_ORIENTATION_UNVERIFIED;E204_SHARE_HISTORY_MISMATCH;E303_QUARTER_FLOW_UNVERIFIED;E401_HIST_PE_INSUFFICIENT;E402_HIST_EV_EBITDA_INSUFFICIENT;E501_DATA_QUALITY_FAIL;E406_VALUATION_NOT_RUN",
+    "missing_methods": NaN,
+    "source": "RAW_ROOT"
+  },
+  "fallback_tickers": [
+    {
+      "ticker": "NVL",
+      "sector": "REAL_ESTATE",
+      "fair_value": 11188.787370929049,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "REAL_ESTATE_FALLBACK_PB_PE",
+      "method_agreement_ratio": 1.0336064829617129
+    },
+    {
+      "ticker": "TCH",
+      "sector": "REAL_ESTATE",
+      "fair_value": 10736.617903073084,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "REAL_ESTATE_FALLBACK_PB_PE",
+      "method_agreement_ratio": 1.1692798317241233
+    },
+    {
+      "ticker": "HSG",
+      "sector": "CYCLICAL_COMMODITY",
+      "fair_value": 11223.505035833725,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "CYCLICAL_FALLBACK_PE_PB",
+      "method_agreement_ratio": 1.1736388796420372
+    },
+    {
+      "ticker": "NKG",
+      "sector": "CYCLICAL_COMMODITY",
+      "fair_value": 12497.621164156071,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "CYCLICAL_FALLBACK_PE_PB",
+      "method_agreement_ratio": 1.0896554770625853
+    },
+    {
+      "ticker": "DGC",
+      "sector": "CYCLICAL_COMMODITY",
+      "fair_value": 90601.40176650732,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "CYCLICAL_FALLBACK_PE_PB",
+      "method_agreement_ratio": 1.1555640169498622
+    },
+    {
+      "ticker": "DPM",
+      "sector": "CYCLICAL_COMMODITY",
+      "fair_value": 20281.074521223785,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "CYCLICAL_FALLBACK_PE_PB",
+      "method_agreement_ratio": 1.1363331187656749
+    },
+    {
+      "ticker": "BSR",
+      "sector": "CYCLICAL_COMMODITY",
+      "fair_value": 12160.799322276514,
+      "confidence": "LOW",
+      "fallback_methodology": "CYCLICAL_FALLBACK_PE_PB",
+      "method_agreement_ratio": 1.0816591466925671
+    },
+    {
+      "ticker": "MSR",
+      "sector": "CYCLICAL_COMMODITY",
+      "fair_value": 10408.647711382506,
+      "confidence": "LOW",
+      "fallback_methodology": "CYCLICAL_FALLBACK_EV_PB",
+      "method_agreement_ratio": 1.2443975783886945
+    },
+    {
+      "ticker": "BWE",
+      "sector": "UTILITIES",
+      "fair_value": 33403.42112470738,
+      "confidence": "LOW",
+      "fallback_methodology": "UTILITIES_FALLBACK_EV_PB",
+      "method_agreement_ratio": 2.2468626964090843
+    },
+    {
+      "ticker": "CMG",
+      "sector": "TECHNOLOGY_ASSET_LIGHT",
+      "fair_value": 31092.421900858822,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "TECH_FALLBACK_PE_EV",
+      "method_agreement_ratio": 1.3313165201533586
+    },
+    {
+      "ticker": "FRT",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 83049.23595150476,
+      "confidence": "LOW",
+      "fallback_methodology": "CONSUMER_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 1.9646935437331576
+    },
+    {
+      "ticker": "PNJ",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 58158.28547464864,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "CONSUMER_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 1.3865030275000447
+    },
+    {
+      "ticker": "DGW",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 32407.764019160248,
+      "confidence": "LOW",
+      "fallback_methodology": "CONSUMER_FALLBACK_PE_EV",
+      "method_agreement_ratio": 1.5807553022185672
+    },
+    {
+      "ticker": "PET",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 20202.787735027487,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "CONSUMER_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 1.07063520373279
+    },
+    {
+      "ticker": "QNS",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 73730.76021800912,
+      "confidence": "LOW",
+      "fallback_methodology": "CONSUMER_FALLBACK_DCF_PE",
+      "method_agreement_ratio": 2.076697189683248
+    },
+    {
+      "ticker": "KDC",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 35324.12556885353,
+      "confidence": "LOW",
+      "fallback_methodology": "CONSUMER_FALLBACK_PE_EV",
+      "method_agreement_ratio": 1.1025626656428007
+    },
+    {
+      "ticker": "MPC",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 15241.661425110384,
+      "confidence": "LOW",
+      "fallback_methodology": "CONSUMER_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 1.0046069586884736
+    },
+    {
+      "ticker": "SBT",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 14050.907562681132,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "CONSUMER_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 1.2827782130089214
+    },
+    {
+      "ticker": "BAF",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 7320.952214984603,
+      "confidence": "LOW",
+      "fallback_methodology": "CONSUMER_FALLBACK_PE_EV",
+      "method_agreement_ratio": 1.1627864355827862
+    },
+    {
+      "ticker": "PAN",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 32756.45449069028,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "CONSUMER_FALLBACK_PE_EV",
+      "method_agreement_ratio": 1.0542415788362145
+    },
+    {
+      "ticker": "IDP",
+      "sector": "CONSUMER_RETAIL",
+      "fair_value": 217140.61355453372,
+      "confidence": "LOW",
+      "fallback_methodology": "CONSUMER_FALLBACK_PE_EV",
+      "method_agreement_ratio": 1.095679109033792
+    },
+    {
+      "ticker": "CII",
+      "sector": "INDUSTRIAL_CONSTRUCTION",
+      "fair_value": 12110.148157495532,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "INDUSTRIAL_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 1.1568753531446725
+    },
+    {
+      "ticker": "HHV",
+      "sector": "INDUSTRIAL_CONSTRUCTION",
+      "fair_value": 11370.012467963545,
+      "confidence": "LOW",
+      "fallback_methodology": "INDUSTRIAL_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 2.108654890656296
+    },
+    {
+      "ticker": "C4G",
+      "sector": "INDUSTRIAL_CONSTRUCTION",
+      "fair_value": 8706.694318627859,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "INDUSTRIAL_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 1.078229275556154
+    },
+    {
+      "ticker": "CC1",
+      "sector": "INDUSTRIAL_CONSTRUCTION",
+      "fair_value": 11540.267110682791,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "INDUSTRIAL_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 1.0018297329401693
+    },
+    {
+      "ticker": "ACV",
+      "sector": "TRANSPORT_LOGISTICS",
+      "fair_value": 56974.69448490589,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "TRANSPORT_FALLBACK_EV_PE",
+      "method_agreement_ratio": 1.0015517592116228
+    },
+    {
+      "ticker": "VJC",
+      "sector": "TRANSPORT_LOGISTICS",
+      "fair_value": 96953.32714115568,
+      "confidence": "LOW",
+      "fallback_methodology": "TRANSPORT_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 1.4522359858925882
+    },
+    {
+      "ticker": "VSC",
+      "sector": "TRANSPORT_LOGISTICS",
+      "fair_value": 16974.48255099318,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "TRANSPORT_FALLBACK_PE_PB_LOW",
+      "method_agreement_ratio": 1.0031357584138916
+    },
+    {
+      "ticker": "PHP",
+      "sector": "TRANSPORT_LOGISTICS",
+      "fair_value": 24732.20652358469,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "TRANSPORT_FALLBACK_EV_PE",
+      "method_agreement_ratio": 1.479801040621602
+    },
+    {
+      "ticker": "VTP",
+      "sector": "TRANSPORT_LOGISTICS",
+      "fair_value": 38348.0005774193,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "TRANSPORT_FALLBACK_DCF_PE",
+      "method_agreement_ratio": 1.2692366044453207
+    },
+    {
+      "ticker": "PVT",
+      "sector": "TRANSPORT_LOGISTICS",
+      "fair_value": 16544.1303969995,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "TRANSPORT_FALLBACK_EV_PE",
+      "method_agreement_ratio": 1.4424334059441268
+    },
+    {
+      "ticker": "MSN",
+      "sector": "HOLDING_CONGLOMERATE",
+      "fair_value": 79429.318592206,
+      "confidence": "LOW",
+      "fallback_methodology": "HOLDING_FALLBACK_PB_PE",
+      "method_agreement_ratio": 1.5727257623074569
+    },
+    {
+      "ticker": "BCG",
+      "sector": "HOLDING_CONGLOMERATE",
+      "fair_value": 1619.3072600559024,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "HOLDING_FALLBACK_PB_PE",
+      "method_agreement_ratio": 1.354023602538866
+    },
+    {
+      "ticker": "IPA",
+      "sector": "HOLDING_CONGLOMERATE",
+      "fair_value": 17969.82674058339,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "HOLDING_FALLBACK_PB_PE",
+      "method_agreement_ratio": 1.079378754594546
+    },
+    {
+      "ticker": "VEA",
+      "sector": "HOLDING_CONGLOMERATE",
+      "fair_value": 47364.849047012896,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "HOLDING_FALLBACK_PB_PE",
+      "method_agreement_ratio": 1.3076059805417577
+    },
+    {
+      "ticker": "BMP",
+      "sector": "GENERAL_NORMAL",
+      "fair_value": 210935.03899444744,
+      "confidence": "LOW",
+      "fallback_methodology": "GENERAL_FALLBACK_DCF_PE",
+      "method_agreement_ratio": 1.733734959069393
+    },
+    {
+      "ticker": "NTP",
+      "sector": "GENERAL_NORMAL",
+      "fair_value": 66805.51973635203,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "GENERAL_FALLBACK_DCF_PE",
+      "method_agreement_ratio": 1.4856272404433344
+    },
+    {
+      "ticker": "VCS",
+      "sector": "GENERAL_NORMAL",
+      "fair_value": 51227.49986435003,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "GENERAL_FALLBACK_DCF_PE",
+      "method_agreement_ratio": 1.375440957937578
+    },
+    {
+      "ticker": "DBD",
+      "sector": "GENERAL_NORMAL",
+      "fair_value": 51308.66300841355,
+      "confidence": "MEDIUM",
+      "fallback_methodology": "GENERAL_FALLBACK_DCF_PE",
+      "method_agreement_ratio": 1.3809124415863858
+    }
+  ],
+  "remaining_partial_tickers": [
+    {
+      "ticker": "POW",
+      "sector": "UTILITIES",
+      "warning_class": "E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "dcf_fcff"
+    },
+    {
+      "ticker": "NT2",
+      "sector": "UTILITIES",
+      "warning_class": "E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "ev_ebitda"
+    },
+    {
+      "ticker": "PPC",
+      "sector": "UTILITIES",
+      "warning_class": "E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "ev_ebitda"
+    },
+    {
+      "ticker": "VSH",
+      "sector": "UTILITIES",
+      "warning_class": "E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "ev_ebitda"
+    },
+    {
+      "ticker": "TDM",
+      "sector": "UTILITIES",
+      "warning_class": "E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "dcf_fcff;ev_ebitda"
+    },
+    {
+      "ticker": "QTP",
+      "sector": "UTILITIES",
+      "warning_class": "E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "ev_ebitda"
+    },
+    {
+      "ticker": "HND",
+      "sector": "UTILITIES",
+      "warning_class": "E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "ev_ebitda"
+    },
+    {
+      "ticker": "VNZ",
+      "sector": "TECHNOLOGY_ASSET_LIGHT",
+      "warning_class": "E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "pe"
+    },
+    {
+      "ticker": "ANV",
+      "sector": "CONSUMER_RETAIL",
+      "warning_class": "E002_FETCH_PARTIAL;E204_SHARE_HISTORY_MISMATCH;E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "ev_ebitda"
+    },
+    {
+      "ticker": "VIC",
+      "sector": "HOLDING_CONGLOMERATE",
+      "warning_class": "E204_SHARE_HISTORY_MISMATCH;E305_PERIOD_REMAP_WEAK_ANCHOR;E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "dcf_fcff"
+    },
+    {
+      "ticker": "HUT",
+      "sector": "HOLDING_CONGLOMERATE",
+      "warning_class": "E204_SHARE_HISTORY_MISMATCH;E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "dcf_fcff"
+    },
+    {
+      "ticker": "GEL",
+      "sector": "HOLDING_CONGLOMERATE",
+      "warning_class": "E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "pb;pe;dcf_fcff"
+    },
+    {
+      "ticker": "PTB",
+      "sector": "GENERAL_NORMAL",
+      "warning_class": "E204_SHARE_HISTORY_MISMATCH;E305_PERIOD_REMAP_WEAK_ANCHOR;E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "dcf_fcff;pe"
+    },
+    {
+      "ticker": "IMP",
+      "sector": "GENERAL_NORMAL",
+      "warning_class": "E204_SHARE_HISTORY_MISMATCH;E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "ev_ebitda"
+    },
+    {
+      "ticker": "DHG",
+      "sector": "GENERAL_NORMAL",
+      "warning_class": "E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "ev_ebitda"
+    },
+    {
+      "ticker": "TRA",
+      "sector": "GENERAL_NORMAL",
+      "warning_class": "E102_QUARTER_ORIENTATION_AMBIGUOUS;E204_SHARE_HISTORY_MISMATCH;E403_VALUATION_METHOD_MISSING;E409_FALLBACK_REJECTED;E404_VALUATION_PARTIAL",
+      "missing_methods": "pe;ev_ebitda"
+    }
+  ]
+}

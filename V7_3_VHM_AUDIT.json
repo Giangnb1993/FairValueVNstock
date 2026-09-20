@@ -1,0 +1,27 @@
+{
+  "VHM": {
+    "annual_orientation": "reversed",
+    "quarter_orientation": "normal",
+    "current_shares": 8214824008.0,
+    "reported_shares_estimate": 4107412000.0,
+    "share_change_ratio": 2.0000000019476984,
+    "latest_equity": 234929679000000.0,
+    "latest_assets": 768264553000000.0,
+    "bvps_anchor_error": 8.36483312834676e-06,
+    "parent_profit_mapping": {
+      "item": "Lợi nhuận sau thuế của cổ đông của Công ty mẹ",
+      "item_id": "profit_after_tax_for_shareholders_of_parent_company"
+    },
+    "valuation_bvps": 28598.260750469384,
+    "normalized_eps": 3966.77183403635,
+    "pb_base": 34503.801595441306,
+    "pe_base": 25565.844470364274,
+    "ri_base": 33602.95638180152,
+    "fair_value": 31642.24541519024,
+    "status": "OK_PROXY_NO_RNAV"
+  },
+  "REGRESSION": {
+    "VCB": 71687.18331406015,
+    "BVH": 45470.73937724999
+  }
+}

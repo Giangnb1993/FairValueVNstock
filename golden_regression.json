@@ -1,0 +1,30 @@
+{
+  "VCB": {
+    "fair_value": 71687.18,
+    "sector": "BANK"
+  },
+  "BVH": {
+    "fair_value": 45470.74,
+    "sector": "INSURANCE"
+  },
+  "VHM": {
+    "fair_value": 31642.25,
+    "sector": "REAL_ESTATE"
+  },
+  "HPG": {
+    "fair_value": 14862.14,
+    "sector": "CYCLICAL_COMMODITY"
+  },
+  "MWG": {
+    "fair_value": 54117.07,
+    "sector": "CONSUMER_RETAIL"
+  },
+  "CTD": {
+    "fair_value": 65623.32,
+    "sector": "INDUSTRIAL_CONSTRUCTION"
+  },
+  "POW": {
+    "valuation_status": "PARTIAL",
+    "sector": "UTILITIES"
+  }
+}

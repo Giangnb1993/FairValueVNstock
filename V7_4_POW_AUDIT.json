@@ -1,0 +1,82 @@
+{
+  "POW": {
+    "sector": "UTILITIES",
+    "annual_orientation": "normal",
+    "quarter_orientation": "normal",
+    "balance_period_resolution": {
+      "status": "REMAPPED",
+      "requested_period": "2026-Q2",
+      "resolved_period": "2025-Q3",
+      "reason": "dated_pre_report_capital_change_and_current_capital_match",
+      "target_current_paid_in_capital": 30678456880000.0,
+      "nominal_latest_paid_in_capital": 23418716000000.0,
+      "nominal_latest_error": 0.2366397015468139,
+      "best_matching_period": "2025-Q3",
+      "best_matching_paid_in_capital": 30678456880000.0,
+      "best_matching_error": 0.0,
+      "capital_changes": [
+        [
+          2026,
+          1,
+          "tăng"
+        ],
+        [
+          2026,
+          2,
+          "tăng"
+        ]
+      ]
+    },
+    "latest_equity": 44663911251000.0,
+    "latest_assets": 106355372742000.0,
+    "latest_cash": 9834057312000.0,
+    "latest_total_debt": 38088977052000.0,
+    "reported_shares_estimate": 3067845688.0,
+    "current_shares": 3067845688.0,
+    "valuation_status": "PARTIAL",
+    "valuation_reason": "MISSING_OR_INVALID_REQUIRED_METHODS_FOR_SECTOR_BLEND",
+    "missing_methods": [
+      "dcf_fcff"
+    ],
+    "invalid_method_scenarios": {},
+    "method_values": {
+      "pb": {
+        "bear": 8985.733957021152,
+        "base": 10571.451714142531,
+        "bull": 12157.16947126391,
+        "target_multiple": 0.726125,
+        "historical_target": 0.785,
+        "justified_pb": 0.47164179104477616,
+        "bvps": 14558.721589454339
+      },
+      "pe": {
+        "bear": 9974.32815770907,
+        "base": 11734.503714951847,
+        "bull": 13494.679272194622,
+        "target_multiple": 18.77,
+        "historical_median_target": 18.77,
+        "target_multiple_method": {
+          "method": "cleaned_historical_median_after_earnings_normalization",
+          "historical_median": 18.77
+        },
+        "normalized_eps": 625.1733465611,
+        "raw_base": 11734.503714951847,
+        "eps_normalization": null
+      },
+      "ev_ebitda": {
+        "bear": 2249.06706004308,
+        "base": 2645.961247109506,
+        "bull": 3042.855434175932,
+        "target_multiple": 7.5200000000000005,
+        "normalized_ebitda": 4836744753000.0
+      }
+    },
+    "fair_value": null
+  },
+  "REGRESSION": {
+    "VCB": 71687.18331406015,
+    "BVH": 45470.73937724999,
+    "VHM": 31642.24541519024,
+    "HPG": 14862.141221350914
+  }
+}
