@@ -28,9 +28,11 @@ jobs:
           pip install requests
 
       - name: Run valuation and screening
+        env:
+          VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
         run: |
           python main.py --batch-file tickers.txt --output batch_output
-
+          
       - name: Prepare published reports
         run: |
           mkdir -p published
