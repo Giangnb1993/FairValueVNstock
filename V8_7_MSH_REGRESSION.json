@@ -1,0 +1,17 @@
+{
+  "fixture": "user-provided MSH raw output",
+  "verification": {
+    "offline_evaluation_ok": true,
+    "metrics_json_contains_volume_score": true,
+    "metrics_json_contains_volume_signal": true,
+    "volume_score": 15.61,
+    "volume_signal": "NEUTRAL",
+    "volume_data_sessions": 100,
+    "fair_value_before_fix": 57729.693589288385,
+    "fair_value_after_fix": 57729.693589288385,
+    "fair_value_unchanged": true,
+    "valuation_status": "OK_FULL",
+    "telegram_example": "1. MSH | 92đ | Giá 30.1k | FV 57.7k | +91.3% | HIGH | Vol 16đ"
+  },
+  "scope": "Volume output integration only; valuation engine and screening weights unchanged."
+}

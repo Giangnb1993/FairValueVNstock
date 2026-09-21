@@ -18,6 +18,7 @@ from latest_fundamentals import (
     quarter_metric,
     latest_quarter_value,
 )
+from volume_score import volume_accumulation_score_from_df
 
 
 try:
@@ -2615,6 +2616,15 @@ class StockAudit:
             print(f"Reconciliation           : {snap.get('reconciliation')}")
             print(f"Fallback reason          : {snap.get('fallback_reason')}")
             print(f"Fiscal-year flow fallback: {snap.get('fiscal_year_flow_fallback')}")
+        print("-"*78)
+        print("VOLUME ACCUMULATION (V8.7)")
+        print(f"Volume score             : {fmt_num(m.get('volume_score'))}/100")
+        print(f"Volume signal            : {m.get('volume_signal')}")
+        print(f"Dry-up / Up-Down         : {fmt_num(m.get('vol_dryup_score'))}/20 / {fmt_num(m.get('vol_up_down_score'))}/20")
+        print(f"Breakout Vol / Price     : {fmt_num(m.get('vol_breakout_volume_score'))}/20 / {fmt_num(m.get('vol_breakout_price_score'))}/15")
+        print(f"Retest / Close near high : {fmt_num(m.get('vol_retest_score'))}/15 / {fmt_num(m.get('vol_close_near_high_score'))}/10")
+        print(f"Breakout date / retest   : {m.get('breakout_date')} / {m.get('retest_status')}")
+        print("-"*78)
         print(f"DATA QUALITY             : {q['status']}  score={q['score']}/100")
         for c in q["checks"]:
             print(f"[{'OK' if c['passed'] else 'FAIL'}]{' [CRITICAL]' if c['critical'] else ''} {c['check']}: {c['detail']}")
@@ -2658,6 +2668,9 @@ class StockAudit:
         data=self.fetch_all()
         self.save_raw(data)
         m=self.calculate(data)
+        # V8.7 report-only signal: derive from the already-fetched daily OHLCV.
+        # This does not make another VNStock API request and does not alter fair value.
+        m.update(volume_accumulation_score_from_df(data.get("price_history")))
         sector,industry=self.sector(data["company_info"])
         m["sector_type"]=sector; m["industry"]=industry
         q=self.validate(m,sector)

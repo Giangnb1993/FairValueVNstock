@@ -11,6 +11,7 @@ import pandas as pd
 
 from stock_audit import StockAudit
 from validation_engine import ValidationEngine
+from volume_score import volume_accumulation_score_from_df
 
 
 RAW_FILES={
@@ -65,6 +66,9 @@ def evaluate_data(symbol: str, data: dict, output_root: str | Path="batch_output
     stage="calculate"
     try:
         m=obj.calculate(data)
+        # V8.7 uses the price_history dataframe already present in the raw payload.
+        # No additional VNStock request is made.
+        m.update(volume_accumulation_score_from_df(data.get("price_history")))
         stage="sector"
         sector,industry=obj.sector(data.get("company_info"))
         m["sector_type"]=sector

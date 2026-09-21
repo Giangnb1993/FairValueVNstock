@@ -9,7 +9,7 @@ from report_engine import generate_reports
 
 def main():
     parser = argparse.ArgumentParser(
-        description="VN Stock Fair Value V8.6 - Screening Report"
+        description="VN Stock Fair Value V8.7 - Volume Accumulation Score"
     )
     parser.add_argument("symbol", nargs="?", help="Ma co phieu, vi du FPT")
     parser.add_argument("--output", default="output", help="Thu muc luu ket qua")

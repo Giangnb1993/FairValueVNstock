@@ -7,6 +7,8 @@ from typing import Any, Dict, Iterable, Optional
 
 import pandas as pd
 
+from volume_score import volume_accumulation_score
+
 
 # Screening score is a screening aid, not a buy/sell recommendation.
 # Locked top-level weights agreed for the report layer.
@@ -223,11 +225,14 @@ def generate_reports(
     rows = []
     for _, row in df.iterrows():
         ticker = str(row.get("ticker") or "").upper()
-        detail = screening_score(row, root / ticker)
+        ticker_dir = root / ticker
+        detail = screening_score(row, ticker_dir)
+        volume_detail = volume_accumulation_score(ticker_dir)
         price = _finite(row.get("market_price"))
         fv = _finite(row.get("fair_value"))
         rec = row.to_dict()
         rec.update(detail)
+        rec.update(volume_detail)
         rec["ticker"] = ticker
         rec["market_price"] = price
         rec["fair_value"] = fv
@@ -247,8 +252,8 @@ def generate_reports(
         & (report["price_to_fv"] < float(max_price_to_fv))
     ].copy()
 
-    # Telegram payload intentionally stays compact. Component scores remain in
-    # market_report.csv for drill-down but are not shown in the list message.
+    # Telegram payload stays compact. V8.7 adds only the independent Volume Score;
+    # detailed volume components remain in market_report.csv.
     telegram_rows = []
     lines = []
     for rank, (_, r) in enumerate(usable.iterrows(), 1):
@@ -262,12 +267,17 @@ def generate_reports(
             "upside_pct": round(float(r["upside_pct"]), 1),
             "confidence": str(r.get("confidence") or ""),
             "fair_value_type": str(r.get("fair_value_type") or ""),
+            "volume_score": _finite(r.get("volume_score")),
+            "volume_signal": str(r.get("volume_signal") or ""),
         }
         telegram_rows.append(item)
         lines.append(
             f"{rank}. {item['ticker']} | {item['score']:.0f}đ | "
             f"Giá {_fmt_k(item['market_price'])} | FV {_fmt_k(item['fair_value'])} | "
-            f"+{item['upside_pct']:.1f}% | {item['confidence']}"
+            f"+{item['upside_pct']:.1f}% | {item['confidence']} | "
+            f"Vol {item['volume_score']:.0f}đ" if item['volume_score'] is not None else
+            f"{rank}. {item['ticker']} | {item['score']:.0f}đ | Giá {_fmt_k(item['market_price'])} | "
+            f"FV {_fmt_k(item['fair_value'])} | +{item['upside_pct']:.1f}% | {item['confidence']} | Vol N/A"
         )
 
     payload = {

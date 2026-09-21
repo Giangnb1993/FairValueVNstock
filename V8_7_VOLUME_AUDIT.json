@@ -1,0 +1,11 @@
+{
+  "version": "8.7",
+  "fix": "single_ticker_volume_persistence",
+  "changes": [
+    "Volume score computed directly from already-fetched price_history dataframe",
+    "Single-ticker metrics.json now includes volume_score, volume_signal and component breakdown",
+    "Batch ticker metrics.json includes the same volume fields",
+    "Terminal single-ticker report prints Volume Accumulation section",
+    "No new VNStock API call; fair-value and screening logic unchanged"
+  ]
+}
