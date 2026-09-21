@@ -65,8 +65,8 @@ jobs:
           import requests
           from pathlib import Path
 
-          token = os.environ["TELEGRAM_BOT_TOKEN"]
-          chat_id = os.environ["TELEGRAM_CHAT_ID"]
+          token = os.environ["TELEGRAM_BOT_TOKEN"].strip()
+          chat_id = os.environ["TELEGRAM_CHAT_ID"].strip()
 
           text = Path("batch_output/telegram_report.txt").read_text(
               encoding="utf-8"
