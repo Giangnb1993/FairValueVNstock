@@ -1,49 +1,50 @@
-1. MSH | 92đ | Giá 30.1k | FV 57.7k | +92.1% | HIGH
-2. NT2 | 91đ | Giá 20.8k | FV 43.8k | +110.5% | MEDIUM
-3. BMP | 90đ | Giá 143.8k | FV 204.8k | +42.4% | MEDIUM
-4. CHP | 90đ | Giá 25.9k | FV 55.8k | +115.3% | MEDIUM
-5. DGC | 89đ | Giá 35.7k | FV 83.6k | +134.2% | MEDIUM
-6. HDB | 88đ | Giá 27.4k | FV 34.7k | +27.0% | HIGH
-7. BIC | 88đ | Giá 21.3k | FV 43.5k | +104.1% | HIGH
-8. MIG | 87đ | Giá 15.9k | FV 19.9k | +24.7% | HIGH
-9. NTP | 87đ | Giá 52.8k | FV 64.3k | +21.8% | MEDIUM
-10. VSH | 86đ | Giá 41.2k | FV 85k | +106.4% | MEDIUM
-11. BCM | 86đ | Giá 40k | FV 62.5k | +56.0% | MEDIUM
-12. TPB | 86đ | Giá 14.2k | FV 18k | +26.3% | HIGH
-13. ACV | 86đ | Giá 39.9k | FV 57k | +42.8% | MEDIUM
-14. TMP | 85đ | Giá 53k | FV 93.6k | +76.5% | HIGH
-15. DHG | 85đ | Giá 90.2k | FV 164.2k | +82.0% | MEDIUM
-16. PNJ | 85đ | Giá 36.9k | FV 52.7k | +42.9% | MEDIUM
-17. VIB | 84đ | Giá 13.6k | FV 20.8k | +53.0% | HIGH
-18. VEA | 84đ | Giá 36.9k | FV 47.4k | +28.4% | MEDIUM
-19. SHP | 84đ | Giá 31k | FV 56.8k | +83.1% | MEDIUM
-20. VCB | 84đ | Giá 59.7k | FV 71.7k | +20.1% | HIGH
-21. VCG | 83đ | Giá 14.4k | FV 36.4k | +151.7% | LOW
-22. SHB | 83đ | Giá 11.7k | FV 14.6k | +24.5% | HIGH
-23. VNR | 82đ | Giá 17.7k | FV 25.9k | +46.5% | HIGH
-24. NAB | 82đ | Giá 12.1k | FV 18.4k | +52.1% | HIGH
-25. SZC | 82đ | Giá 17.9k | FV 29k | +62.5% | MEDIUM
-26. VCI | 82đ | Giá 20.7k | FV 27.8k | +34.3% | HIGH
-27. MBB | 82đ | Giá 20.1k | FV 24.4k | +21.3% | HIGH
-28. ANV | 82đ | Giá 16.1k | FV 26.3k | +63.6% | LOW
-29. BID | 82đ | Giá 36.5k | FV 44.4k | +21.6% | HIGH
-30. MBS | 81đ | Giá 17k | FV 21.9k | +29.0% | HIGH
-31. HDG | 81đ | Giá 16.2k | FV 27.1k | +67.2% | MEDIUM
-32. KDH | 81đ | Giá 16.1k | FV 26.2k | +63.1% | MEDIUM
-33. VHC | 81đ | Giá 50.3k | FV 118.2k | +134.9% | MEDIUM
-34. QTP | 79đ | Giá 11k | FV 40.1k | +264.5% | LOW
-35. VCS | 79đ | Giá 31.1k | FV 50.9k | +63.6% | MEDIUM
-36. MSB | 79đ | Giá 13.2k | FV 16.6k | +26.2% | HIGH
-37. CMG | 79đ | Giá 22.9k | FV 31.1k | +35.5% | MEDIUM
-38. CTG | 79đ | Giá 30.7k | FV 44.2k | +43.8% | HIGH
-39. OCB | 79đ | Giá 10.5k | FV 12.7k | +20.9% | HIGH
-40. PAN | 79đ | Giá 18.6k | FV 32.8k | +76.6% | MEDIUM
-41. BSI | 79đ | Giá 27.3k | FV 37.4k | +36.9% | HIGH
-42. PDR | 78đ | Giá 11.6k | FV 15.7k | +35.5% | MEDIUM
-43. ACB | 78đ | Giá 22.2k | FV 30.9k | +39.0% | HIGH
-44. QNS | 77đ | Giá 49.9k | FV 68.3k | +36.9% | MEDIUM
-45. IDC | 77đ | Giá 32.4k | FV 47.2k | +45.7% | MEDIUM
-46. DIG | 77đ | Giá 10.3k | FV 13.1k | +26.7% | LOW
-47. GEG | 76đ | Giá 12.3k | FV 33.2k | +170.2% | LOW
-48. PC1 | 76đ | Giá 19.9k | FV 35.9k | +80.5% | LOW
-49. CTS | 76đ | Giá 22k | FV 27k | +22.9% | HIGH
+1. MSH | 92đ | Giá 30k | FV 57.7k | +92.4% | HIGH | Vol 16đ
+2. NT2 | 91đ | Giá 20.6k | FV 43.8k | +112.8% | MEDIUM | Vol 17đ
+3. BMP | 90đ | Giá 143.5k | FV 204.8k | +42.7% | MEDIUM | Vol 4đ
+4. CHP | 90đ | Giá 26k | FV 55.8k | +114.5% | MEDIUM | Vol 35đ
+5. DGC | 89đ | Giá 35.4k | FV 83.6k | +136.5% | MEDIUM | Vol 14đ
+6. BIC | 88đ | Giá 21.7k | FV 43.5k | +100.3% | HIGH | Vol 22đ
+7. HDB | 88đ | Giá 27.6k | FV 34.7k | +25.9% | HIGH | Vol 22đ
+8. MIG | 87đ | Giá 15.9k | FV 19.9k | +25.1% | HIGH | Vol 12đ
+9. NTP | 87đ | Giá 52.5k | FV 64.4k | +22.6% | MEDIUM | Vol 20đ
+10. VSH | 86đ | Giá 41.4k | FV 85k | +105.6% | MEDIUM | Vol 13đ
+11. BCM | 86đ | Giá 39.8k | FV 62.5k | +57.0% | MEDIUM | Vol 20đ
+12. TPB | 86đ | Giá 14k | FV 18k | +28.5% | HIGH | Vol 12đ
+13. ACV | 86đ | Giá 39.7k | FV 57k | +43.5% | MEDIUM | Vol 28đ
+14. TMP | 85đ | Giá 53k | FV 93.6k | +76.5% | HIGH | Vol 36đ
+15. DHG | 85đ | Giá 90.5k | FV 164.2k | +81.4% | MEDIUM | Vol 21đ
+16. PNJ | 85đ | Giá 36.9k | FV 52.7k | +42.7% | MEDIUM | Vol 24đ
+17. VIB | 84đ | Giá 13.3k | FV 20.8k | +55.8% | HIGH | Vol 28đ
+18. VEA | 84đ | Giá 36.9k | FV 47.4k | +28.4% | MEDIUM | Vol 59đ
+19. VCB | 84đ | Giá 58.9k | FV 71.7k | +21.7% | HIGH | Vol 24đ
+20. SHP | 84đ | Giá 31.2k | FV 56.8k | +81.9% | MEDIUM | Vol 17đ
+21. VCG | 83đ | Giá 14.3k | FV 36.5k | +155.0% | LOW | Vol 7đ
+22. SHB | 83đ | Giá 11.6k | FV 14.6k | +25.5% | HIGH | Vol 16đ
+23. NAB | 82đ | Giá 11.9k | FV 18.4k | +54.0% | HIGH | Vol 50đ
+24. VNR | 82đ | Giá 17.7k | FV 25.9k | +46.5% | HIGH | Vol 10đ
+25. SZC | 82đ | Giá 17.7k | FV 29k | +63.9% | MEDIUM | Vol 26đ
+26. VCI | 82đ | Giá 20.1k | FV 27.8k | +38.0% | HIGH | Vol 21đ
+27. BID | 82đ | Giá 36.2k | FV 44.4k | +22.6% | HIGH | Vol 8đ
+28. ANV | 82đ | Giá 16k | FV 26.3k | +64.2% | LOW | Vol 14đ
+29. MBB | 82đ | Giá 20.2k | FV 24.4k | +20.7% | HIGH | Vol 7đ
+30. MBS | 81đ | Giá 16.7k | FV 21.9k | +31.3% | HIGH | Vol 18đ
+31. KDH | 81đ | Giá 15.8k | FV 26.2k | +65.2% | MEDIUM | Vol 18đ
+32. HDG | 81đ | Giá 16k | FV 27.1k | +69.4% | MEDIUM | Vol 28đ
+33. VHC | 81đ | Giá 50.2k | FV 118.2k | +135.4% | MEDIUM | Vol 4đ
+34. QTP | 79đ | Giá 11k | FV 40.1k | +264.5% | LOW | Vol 35đ
+35. VCS | 79đ | Giá 31.2k | FV 50.9k | +63.0% | MEDIUM | Vol 29đ
+36. MSB | 79đ | Giá 13.1k | FV 16.6k | +27.2% | HIGH | Vol 36đ
+37. CMG | 79đ | Giá 22.7k | FV 31.1k | +37.0% | MEDIUM | Vol 15đ
+38. BSI | 79đ | Giá 26.9k | FV 37.4k | +39.2% | HIGH | Vol 26đ
+39. OCB | 79đ | Giá 10.4k | FV 12.7k | +21.5% | HIGH | Vol 21đ
+40. PAN | 79đ | Giá 18.4k | FV 32.8k | +77.5% | MEDIUM | Vol 0đ
+41. CTG | 79đ | Giá 31k | FV 44.2k | +42.4% | HIGH | Vol 4đ
+42. PDR | 79đ | Giá 11.5k | FV 15.7k | +36.1% | MEDIUM | Vol 17đ
+43. ACB | 78đ | Giá 22.4k | FV 30.9k | +38.1% | HIGH | Vol 26đ
+44. QNS | 77đ | Giá 49.6k | FV 68.4k | +37.8% | MEDIUM | Vol 76đ
+45. DIG | 77đ | Giá 10.1k | FV 13.1k | +29.3% | LOW | Vol 28đ
+46. IDC | 77đ | Giá 33.2k | FV 47.2k | +42.2% | MEDIUM | Vol 8đ
+47. CTS | 76đ | Giá 21.6k | FV 27k | +25.1% | HIGH | Vol 20đ
+48. GEG | 76đ | Giá 12.3k | FV 33.2k | +169.0% | LOW | Vol 22đ
+49. BAB | 76đ | Giá 10.9k | FV 12.9k | +18.7% | HIGH | Vol 31đ
+50. PC1 | 76đ | Giá 20.1k | FV 35.9k | +78.3% | LOW | Vol 9đ
