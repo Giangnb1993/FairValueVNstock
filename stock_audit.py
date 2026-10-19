@@ -2512,9 +2512,17 @@ class StockAudit:
             out["status"]="PARTIAL"; out["reason"]="NO_APPROVED_FALLBACK_FOR_MISSING_FULL_METHODS"
             return out
 
-        sanity=self._cross_method_sanity(out["method_values"])
+        if sector=="UTILITIES":
+            # Apply the existing 2.25 agreement limit to the methods actually
+            # used in the utility blend; the audit-only P/E is not an anchor.
+            active_methods={k:out["method_values"][k] for k in w}
+            sanity=self._cross_method_sanity(active_methods,threshold=2.25)
+        else:
+            sanity=self._cross_method_sanity(out["method_values"])
         out["cross_method_sanity"]=sanity
         if sanity.get("status")=="FAIL_DCF_EXTREME":
+            if sector=="UTILITIES":
+                out["full_blend_audit"]=out["blend"]
             fb=self._try_fallback(sector,out["method_values"],"CROSS_METHOD_DIVERGENCE",exclude_methods={"dcf_fcff"})
             out["fallback"]=fb
             if fb.get("status")=="OK_FALLBACK":
@@ -2522,12 +2530,17 @@ class StockAudit:
                           "fallback_methods","fallback_trigger","method_agreement_ratio","bear","base","bull","fair_value"):
                     out[k]=fb.get(k)
                 out["reason"]="APPROVED_FALLBACK_AFTER_DCF_DIVERGENCE"
+                if sector=="UTILITIES":
+                    out["blend"]=fb["blend"]
                 if out.get("market_price") and out.get("fair_value"):
                     out["upside"]=out["fair_value"]/out["market_price"]-1
                     out["margin_of_safety"]=1-out["market_price"]/out["fair_value"]
                 return out
             out["status"]="PARTIAL"; out["reason"]="CROSS_METHOD_DIVERGENCE"
             out["bear"]=out["base"]=out["bull"]=out["fair_value"]=None
+            if sector=="UTILITIES":
+                out["blend"]={**blend,"status":"PARTIAL","bear":None,"base":None,"bull":None,
+                              "reason":"CROSS_METHOD_DIVERGENCE"}
             return out
         out["bear"],out["base"],out["bull"]=blend["bear"],blend["base"],blend["bull"]
         out["fair_value"]=out["base"]
@@ -2692,4 +2705,5 @@ class StockAudit:
         self.save(m,q,v)
         self.print_report(m,q,v)
         return m,q,v
+
 
