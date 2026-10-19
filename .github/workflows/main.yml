@@ -27,6 +27,15 @@ jobs:
           pip install --extra-index-url https://vnstocks.com/api/simple -r requirements.txt
           pip install requests
 
+      - name: Run regression checks
+        run: |
+          python -m py_compile stock_audit.py main.py
+          python selftest.py
+          python selftest_historical.py
+          python selftest_historical_v2.py
+          python selftest_provider_multiples_v3.py
+          python selftest_volume_v8_7.py
+
       - name: Run valuation and screening
         env:
           VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
@@ -95,6 +104,7 @@ jobs:
           PY
 
       - name: Upload report artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: fairvalue-report
@@ -106,6 +116,7 @@ jobs:
             batch_output/batch_summary.json
             batch_output/error_groups.json
             batch_output/warning_groups.json
+          if-no-files-found: warn
 
       - name: Upload valuation diagnostics
         if: always()
