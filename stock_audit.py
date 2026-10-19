@@ -1253,6 +1253,7 @@ class StockAudit:
         # Flow metrics use validated TTM when four consecutive quarters are available;
         # balance-sheet metrics use the latest reported quarter. If quarterly data fail
         # reconciliation, annual values remain in place and the reason is recorded.
+        metrics["eps_annual_audit"] = metrics.get("eps")
         latest_snapshot = build_latest_snapshot(data, metrics)
         metrics["latest_snapshot"] = latest_snapshot
         metrics["latest_data_period"] = latest_snapshot.get("latest_period")
@@ -1386,11 +1387,12 @@ class StockAudit:
             if qref.get("trailing_eps") is not None:
                 metrics["eps_provider_trailing"] = qref["trailing_eps"]
                 metrics["eps_current"] = qref["trailing_eps"]
+                metrics["eps"] = qref["trailing_eps"]
                 metrics["eps_current_source"] = "provider_latest_quarter.trailing_eps"
                 if metrics.get("market_price") and qref["trailing_eps"] > 0:
                     metrics["pe_calculated"] = metrics["market_price"] / qref["trailing_eps"]
                     metrics["pe"] = metrics["pe_calculated"]
-            elif metrics.get("current_basis") == "TTM_PLUS_LATEST_QUARTER" and metrics.get("eps_ttm_calculated"):
+            elif metrics.get("current_basis") == "TTM_PLUS_LATEST_QUARTER" and metrics.get("eps_ttm_calculated") is not None:
                 metrics["eps_current"] = metrics["eps_ttm_calculated"]
                 metrics["eps_current_source"] = "verified_ttm_profit/current_shares"
                 metrics["eps"] = metrics["eps_ttm_calculated"]
@@ -1901,6 +1903,13 @@ class StockAudit:
                     ev_ebitda_validation = "reject_market_multiple_mismatch"
                     allow_ev_ebitda = False
 
+        # Keep rejection evidence even when missing methods lead to fallback/PARTIAL.
+        out["input_validation"] = {"ev_ebitda": {
+            "status": ev_ebitda_validation,
+            "relative_diff": ev_ebitda_rel_diff,
+            "allowed": allow_ev_ebitda,
+        }}
+
         debt_s=pd.Series(m["series"]["total_debt"],dtype=float)
         avg_debt=avg_latest_two(debt_s)
         kd=clip(abs(m["latest_interest_expense"])/avg_debt,0.04,0.14) if avg_debt and m["latest_interest_expense"] is not None else 0.08
@@ -1942,12 +1951,17 @@ class StockAudit:
         ev_hist = hist.get("ev_ebitda") or {}
 
         pe_target,pe_target_confidence = self._resolve_historical_target(pe_hist,"pe")
-        if m.get("eps") and m.get("eps")>0 and pe_target:
+        # Prefer the resolved current EPS; a non-positive current EPS must not
+        # silently fall back to an older profitable year.
+        pe_eps = m.get("eps_current") if m.get("eps_current") is not None else m.get("eps")
+        if pe_eps is not None and pe_eps>0 and pe_target:
             out["method_values"]["pe"]={
-                "bear":m["eps"]*pe_target*0.85,
-                "base":m["eps"]*pe_target,
-                "bull":m["eps"]*pe_target*1.15,
+                "bear":pe_eps*pe_target*0.85,
+                "base":pe_eps*pe_target,
+                "bull":pe_eps*pe_target*1.15,
                 "weight":0.25,
+                "eps_used":pe_eps,
+                "eps_source":m.get("eps_current_source") or ("eps_current" if m.get("eps_current") is not None else "latest_annual_statement"),
                 "target_multiple":pe_target,
                 "history_count":pe_hist.get("count"),
                 "history_source":pe_hist.get("source"),
@@ -1955,7 +1969,7 @@ class StockAudit:
             }
 
         ev_target,ev_target_confidence = self._resolve_historical_target(ev_hist,"ev_ebitda")
-        if m.get("latest_ebitda") and ev_target and m.get("shares"):
+        if allow_ev_ebitda and m.get("latest_ebitda") and ev_target and m.get("shares"):
             def evps_target(x):
                 eqv=m["latest_ebitda"]*x+cash-debt
                 return eqv/m["shares"] if eqv>0 else None
@@ -2678,3 +2692,4 @@ class StockAudit:
         self.save(m,q,v)
         self.print_report(m,q,v)
         return m,q,v
+
