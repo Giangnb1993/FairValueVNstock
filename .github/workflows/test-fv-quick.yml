@@ -1,0 +1,46 @@
+name: Test FV Quick
+
+on:
+  workflow_dispatch:
+    inputs:
+      symbols:
+        description: "Ma can kiem tra, cach nhau bang dau phay"
+        required: true
+        default: "HND,QTP,GEG,MSH,FPT"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  test-fv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --extra-index-url https://vnstocks.com/api/simple -r requirements.txt
+
+      - name: Run selected tickers
+        env:
+          VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
+          FV_TEST_SYMBOLS: ${{ inputs.symbols }}
+        run: |
+          python main.py --batch "$FV_TEST_SYMBOLS" --output quick_output --no-reuse-raw --delay 16
+
+      - name: Upload quick test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-quick-results
+          path: quick_output/
+          if-no-files-found: warn
