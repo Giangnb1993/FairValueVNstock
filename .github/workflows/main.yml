@@ -106,3 +106,17 @@ jobs:
             batch_output/batch_summary.json
             batch_output/error_groups.json
             batch_output/warning_groups.json
+
+      - name: Upload valuation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fairvalue-diagnostics
+          path: |
+            batch_output/HND/
+            batch_output/QTP/
+            batch_output/GEG/
+            batch_output/MSH/
+            batch_output/FPT/
+          if-no-files-found: warn
+
